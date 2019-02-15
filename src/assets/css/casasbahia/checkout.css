@@ -1,0 +1,4044 @@
+/* CB - Checkout  v 4.1*/
+
+@charset "UTF-8";
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,a,p,address,em,img,small,strong,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,embed{margin:0;padding:0;border:0;outline:0;font:inherit;font-size:100%;vertical-align:baseline;background:transparent;}
+body {line-height:1;font:75% Tahoma, Arial, Verdana, sans-serif;color:#757576;background:#fff;}
+input, select {vertical-align:middle;}
+ol, ul {list-style:none;}
+[hidden]{display:none;}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+a:focus{outline:thin dotted;}
+a:active,a:hover{outline:0;}
+b,strong{font-weight:bold;}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}
+img {border:0;}
+legend{border:0;padding:0;}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}
+button,input{line-height:normal;}
+button,select{text-transform:none;}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}
+button[disabled],html input[disabled]{cursor:default;}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+textarea{overflow:auto;vertical-align:top;}
+table{border-collapse:collapse;border-spacing:0;}
+.register .validation-errors{top:5px;}
+a{color:#666;text-decoration:none;}
+em{font-style:normal;}
+fieldset{border:0;}
+fieldset p{position:relative;}
+.alertOD,.field-validation-error,.validation-errors,.alert{padding:6px 10px;background:#f2f9fd;border:1px solid #b7cedf;border-radius:4px;text-align:left;}
+.register .validation-errors{position:relative;top:5px;}
+.cadAdicional .validation-errors{position:relative;top:-14px;}
+.addressRegister .validation-errors{margin-bottom:10px;display:inline-block;}
+.addressDetailsWrp .validation-errors{line-height:16px;float:left;margin-top:20px;}
+.shipping .field-validation-error{bottom:30px;top:inherit;right:200px;}
+.fMulticheque .fCardExp .field-validation-error{right:32%;}
+.fMulticheque .fCardName .field-validation-error{top:95px;left:0;width:70%;}
+.fMulticheque .fCsc .field-validation-error{top:75px;}
+.fMcmCc .field-validation-error{top:-6px;}
+.fMcmCc .fMcmCcsc .field-validation-error,.fMcmCc .fCardExp .field-validation-error{top:20px;left:190px;right:inherit;}
+.changeEmail .field-validation-error{top:0;right:23px;}
+.retrievePassword .field-validation-error{top:0;right:-3px;}
+.alertGrooms{padding:20px 30px;background:#fff5c1;border-bottom:1px solid #fc0;font-size:1.2em;color:#854f01;}
+
+.validation-errors br{display:none;}
+.alertLC{padding:20px;float:left;line-height:1.4em;}
+.obsLC{padding:13px 40px 10px 79px;line-height:1.4em;background:url(../img/ico-atencao.png) no-repeat left top;}
+.obsLC b{display:block;font-size:1.4em;color:#320d41;}
+
+.field-validation-error{position:absolute;top:22px;right:0;white-space:nowrap;}
+.input-validation-error {border-color: #d12030 !important;}
+.messageRow .field-validation-error{top:10px;right:200px;background:#f36;color:#fbf9bd;}
+.fLocal .field-validation-error,.fRua .field-validation-error,.fNumero .field-validation-error{top:-8px;}
+
+.alertOD,
+.alert,.obsFrete{margin:10px 0;}
+.paymentMain .alert{position:absolute;top:53px;right:50px;width:28%;line-height:16px;z-index:1;}
+.login .validation-errors{position:absolute;top:80px;right:282px;}
+.fLogin .field-validation-error{width:auto;left:0;right:inherit;top:130px;white-space:normal;}
+.fLogin .pPossuiCadastro .field-validation-error{top:103px;}
+.cc .validation-errors{position:absolute;top:-3px;right:250px;}
+.register .field-validation-error{top:-4px;right:14%;}
+.register .fTel .field-validation-error{right:8%;}
+.register .fTel .validacao_num {top:26px;}
+.register .month-validation{top:28px;}
+.register .year-validation{top:60px;}
+.fData .register .field-validation-error{right:7%;}
+input.input-validation-error{border:1px solid #f6d3d6;background:url(../img/ico-error.png) no-repeat 98% center #fff;}
+input.valid{background:url(../img/ico-valid.png) no-repeat 98% center #fff;}
+.required, label i{color:#d02130;}
+.required{position:absolute;bottom:50px;right:200px;}
+.fCadastroEndereco .required{right:330px;}
+.fDataNasc .day,.fDataNasc .month,.cep input.input-validation-error,.cep input.valid,input.valePresente,.fromTo input{background:#fff;}
+
+.fGiftCard .field-validation-error,.fMulticheque .field-validation-error,.fCc .field-validation-error{right:inherit;left:0;top:64px;}
+.fCc .fCardExp .field-validation-error,.fCc .fCcsc .field-validation-error{left:-35px;}
+.fCadastroAdicional .field-validation-error{top:-4px;}
+
+
+fieldset.fMulticheque, p.fCardExp{ overflow: hidden;}
+fieldset.fMulticheque #DtValidadeMes{ width: 85px; margin-right: 6px;}
+fieldset.fMulticheque #DtValidadeAno{ width: 85px;}
+
+
+.txtCardNumber{width:85%;}
+.txtCardName{width:370px;margin-right:25px;}
+.txtCardNumber,.txtCardExp,.txtCardName{display:inline-block;line-height:20px;}
+.txtCardNumber,.txtCardExp,.txtCardName,
+input[type="text"],input[type="number"],input[type="password"],select,textarea{padding:15px 20px 16px 18px;font-size:1.2em;border:1px solid #d5dbdb;border-radius:4px;}
+input[type="submit"]{border-left:0;border-top:0;border-right:0;}
+.fItauMobile span,.paymentOpt label,.fEntregaAgendada label,.fRetirarLoja label,.fCadastro label,.fchangePwd label{margin-bottom:5px;display:block;font-size:1.3em;font-weight:bold;color:#1381ce;}
+.fCadastro input[type="text"]{width:50%;}
+
+.fCadastro .fNumero input{width:25%;}
+.fCadastro .fCEP input{width:20%;}
+.fCadastro .fRG{width:25%;}
+.fCadastro .bts{text-align:right;}
+#block {z-index:5;background-color:#fff;position:fixed;left:0;top:0;z-index:999;width:100%;height:100%;opacity:0;}
+#block #blockMsg {position:absolute;top:38%;left:40%;z-index:999;opacity:1 !important;font:normal 3em/1 Tahoma, Arial, sans-serif;background:url(../img/load.gif) no-repeat 20px center #fff;color:#1382d1;display:block;padding:20px 20px 0 80px;width:auto;height:60px;border:none;}
+#popWrap{display:none;position:fixed;top:50%;left:50%;z-index:102;color:#000;text-align:left;z-index:102;background-color:#fff;}
+#popOverlay{display:none;position:fixed;z-index:100;top:0;left:0;height:100%;width:100%;background-color:#000;opacity:0.7;}
+.popGESW{margin-left:-400px;width:800px;height:632px;overflow-y:auto;margin-top:-330px;}
+.fCadastroEndereco .fRua{width:68%;}
+.fCadastroEndereco .fRua input{width:88%;}
+.fCadastro label[data-id="lblInfoEnderecoEntrega"]{font-size:12px;font-family:Arial;color: #757576;font-weight: normal;}
+section{width:100%;display:block;position:relative;}
+.contentWrapper{margin:20px auto;max-width:970px;min-width:600px;}
+#body {padding:10px;}
+h1{display:none;}
+h2{margin-bottom:20px;font-size:2em;font-weight:bold;color:#1381ce;}
+.loginMain h2,.addressMain h2,.paymentMain h2,.confirmationMain h2{padding:0;margin-bottom:0;border:0;}
+.fullCart h2,.cartSummaryWrp h2,.resumoProduto h2,.produtos h2,.ofertaResumo h2{}
+.fullCart h2{margin-bottom:0;}
+.qty{font-size:1.2em;position:absolute;top:28px;left:4px;}
+.subtitulo{margin-bottom:10px;font-size:1.3em;}
+.lnkEdit{padding:0 10px;display:inline-block;color:#fff;text-decoration:none;position:absolute;top:0;right:0;}
+.obsFrete{float:left;background:none;color:inherit;line-height:1.4em;}
+.obsLista{font-size:1em;line-height:16px;}
+tfoot .alert{border:1px solid #f3dc8d;}
+.bt{display:inline-block;padding:11px 20px;font-size:1.2em;font-weight:bold;color:#fff;border:0;background-color:#0f811f;border-radius:4px;-webkit-transition:all 150ms ease;-moz-transition:all 150ms ease;transition:all 150ms ease;text-decoration:none;}
+.bt:hover{background-color:#34ab44;}
+table .bt {line-height:20px;height:auto;font-size:1.3em;padding:0 10px;border:0;}
+.discount .btCalcular{padding:12px;margin-left:-8px;height:21px;font-size:1.2em;line-height:18px;}
+.discount .fechar{text-decoration: underline;}
+tfoot .bt{margin-left:-8px;line-height:40px;height:51px;border:0!important;}
+.addressListWrp .btCancelar,
+.fCadastro .btCancelar{padding:10px;margin:6px 20px 0 0;font-size:1.2em;}
+
+.comprarMais{float:left;}
+.concluirCompra,.btConcluirCompra{float:right;}
+.comprarMais,.concluirCompra {margin-bottom:10px;}
+.comprarMais .bt,.btMudarFPagamento{background:#85afc8;}
+.comprarMais .bt:hover,.btMudarFPagamento:hover{background:#63acd8;}
+.comprarMais .bt{}
+.btPaypal,.btPaypal:hover{ padding:0;margin:0 30px 0 0;width:190px;height:45px;float:left;background:url(../img/btPaypal.png) no-repeat;text-indent:-9999em;border:0;border-radius:0;-webkit-transition:none;-moz-transition:none;transition:none;}
+.btMudarFPagamento{padding:0 12px;line-height:35px;height:35px;position:relative;top:7px;}
+.addressListWrp .bts{text-align:right;}
+.loginMain .wrp,.addressMain .wrp,.paymentMain .wrp,.cadAdicional .wrp,.resultadoAnalise .wrp,.userProfile .wrp{margin-top:7px;border-radius:4px;overflow:hidden;}
+.userProfile .wrp{margin-top:0;}
+.paymentMain .wrp{border-top-color:#48bac6;}
+.socialLogin{display: none;}
+.socialLogin,.login{padding:32px;padding-top:40px;width:43%;min-height:150px; margin: 0 auto;}
+.register .socialLogin{padding:15px 0 0 82px;width:92%;min-height:80px;float:none;position:relative;background:url(../img/ico-atencao.png) no-repeat;}
+.login{padding:56px 32px 0 38px;margin:10px auto 32px;}
+.socialLogin em {padding:0 92px;font-size:1.2em;font-weight:bold;color:#e89005;text-align:center;display:block;}
+.register .socialLogin em {padding:0 0 3px;text-align:left;font-size:1.7em;font-weight:normal;color:#320d41;}
+.socialLogin .btFBConnect{margin:16px auto 10px;width:266px;height:38px;display:block;text-indent:-9999em;background:url(../img/btFBConnect.png) no-repeat;}
+.socialLogin .btFBConnect:hover{background-position:0 -38px;}
+.register .socialLogin .btFBConnect{float:right;position:absolute;top:0;right:0;}
+.socialLogin p {padding:0 77px 18px;margin-bottom:18px;line-height:16px;text-align:center;border-bottom:1px solid #b7cedf;}
+.register .socialLogin p{padding:0;margin:0;border:0;text-align:left;}
+.socialLogin .vantagens{margin:0 auto;width:275px;}
+.socialLogin .vantagens li{padding:13px 0 13px 40px;color:#1381ce;background:url(../img/ico.png) no-repeat;}
+.socialLogin .vantagens li.vtg01{background-position:0 6px;}
+.socialLogin .vantagens li.vtg02{background-position:0 -57px;}
+.socialLogin .vantagens li.vtg03{background-position:0 -111px;}
+.fLogin p{display:block;}
+.fLogin em{padding-bottom:8px;font-size:1.2em;font-weight:bold;color:#1381ce;display:block;}
+.fLogin label{color:#1381ce;}
+.fLogin .email{margin-bottom:46px;}
+.fLogin .email label{display:none;}
+.fLogin label{font-weight:bold;}
+.fLogin .iEmail{width:90%;}
+.fLogin .iPassword{margin-left:17px;width:74%;}
+.loginMain .void{display:none;top:235px;}
+
+.lnkPop,fieldset .lnk,.addressWrp .lnk,.lnkExtrato{margin-top:8px;color:#1381ce;text-decoration:underline;}
+.fCadastroEndereco .lnkCEP{color:#1381ce;text-decoration:underline;margin:8px 0 0;display:block;}
+#lnkEsqueciMeuEmail {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.fRetirarLoja .lnk,.fLocker .lnk{display:block;}
+
+.fLogin .lnkPop{float:right;margin-left:20px;}
+.fLogin .firstLogin{margin:10px 0 14px;width:100%;float:left;}
+.fLogin .btLogin{float:right;text-transform:capitalize;}
+
+.header{background:#1381ce;}
+.headerContent{margin:0 auto;max-width:970px;min-width:600px;height:70px;overflow:hidden;}
+.logo{width:197px;height:48px;display:block;float:left;text-indent:-9999em;background:url(../../img/logo.png) no-repeat;margin:11px 0 0 10px;}
+#footer{width:100%;overflow:hidden;}
+.terms{padding:30px 16%;margin:0 auto;width:68%;line-height:1.5em;background:#f6f6f6;}
+.terms a{color:#666;}
+.terms a:hover{text-decoration:underline;}
+.lnkPartner{font-weight:bold;}
+
+.header .hLinks{margin-top:23px;list-style:none;float:left;}
+.header .hLinks li{margin-left:40px;float:left;/*background:url(../img/ico.png) no-repeat;*/}
+.header .hLinks li.atendimento{background-position:0 -27px;}
+.header .hLinks li.pedidos{background-position:0 -55px;}
+.header .hLinks li.secure{/*background-position:0 -86px;*/}
+.header li,.header .lnk,.header .lnkPop{color:#fff;text-decoration:none;}
+.header .lnkPop{margin:0;}
+.header .secure em,.header .televendas em{font-weight:bold;}
+.header .secure {background: url(/App_Themes/CasasBahia/img/icon-secure.png) no-repeat 11px 0px; color: #a6daff; font-size: 12px;display: block; padding: 3px 9px 5px; font-family: Arial;}
+
+.header .lnk,.header .lnkPop{padding-left:30px;display:block;}
+.header .hLinks li.atendimento a{line-height:20px;}
+.header .hLinks li.atendimento a { background: url(/App_Themes/CasasBahia/img/icon-atendimento-menu.png) no-repeat; padding-left: 25px;}
+.header .hLinks li.pedidos a{margin-top:2px;line-height:16px;}
+.header .hLinks li.pedidos a{background: url(/App_Themes/CasasBahia/img/icon-meus-pedidos-menu.png) no-repeat; padding-left: 15px;}
+.header .hLinks li.secure{padding-left:30px;}
+.header .hLinks li a{ color: #a6daff; font-size: 12px; display: block; padding: 0 9px; font-family: Arial;}
+
+/*menu header*/
+.headerMenuWrap{overflow:visible;background:#111;width:960px;margin:0 auto;}
+.headerMenu{overflow:visible;text-align:left;width:960px;margin:0 auto;}
+.headerMenu:after{content:'';display:block;clear:both;}
+.headerMenu > li{float:left;}
+.headerMenu .itemTitle b{font:normal 1em/1.5 arial,sans-serif;font-weight:bold;display:block;padding-left:8px;white-space:nowrap;}
+.headerMenuWrap .lnk:hover{text-decoration:underline;}
+.headerMenuWrap .mItem{position:relative;padding:0;left:0;margin-top:0;width:93px;text-align:center;}
+.headerMenuWrap .mItem:hover .itemTitle{background:#fff;-moz-box-shadow:0 -3px 3px rgba(0,0,0,0.1);box-shadow:0 -3px 3px rgba(0,0,0,0.1);}
+.headerMenuWrap .mItem:hover .itemTitle b{color:#666;border:0;}
+.headerMenuWrap .itemTitle{cursor:default;display:block;position:relative;z-index:501;}
+.headerMenuWrap .itemTitle b{display:block;line-height:1;white-space:normal;border-right:1px solid #333;padding:5px;}
+.headerMenuWrap .item a{color:#474747;padding:3px 0;}
+.headerMenuWrap .mItem:hover .sbmn{visibility:visible;opacity:1;}
+.headerMenuWrap .sbmn{top:100%;padding:15px 10px;text-align:left;visibility:hidden;opacity:0;background:#fff;position:absolute;min-width: 450px;z-index:500;-moz-box-shadow:0 0 7px rgba(0,0,0,0.3);box-shadow:0 0 7px rgba(0,0,0,0.3);}
+.headerMenuWrap .sbmn .smList{margin:0 20px 10px 0;float:left;}
+.headerMenuWrap .more .lnk{color:#f00;}
+.headerMenuWrap .mItem .banner{float:right;width:300px;height:300px;border:1px dashed #ccc;}
+
+table.cart,.tCartSummary {border-collapse:separate;}
+table.cart tr:first-child th:first-child,
+.tCartSummary tr:first-child th:first-child {-webkit-border-top-left-radius:2px;-moz-border-radius-topleft:2px;border-top-left-radius:2px;}
+
+.hLinks .lnk,.hLinks .lnkPop,.register fieldset.fCadastroAviso label,.socialLogin .vantagens li,.fLogin label,table.cart th,.produto .name,.cart td.prazo,.cart td.valorUnitario,td.valorTotal,.subtotal td,.freteLabel,.freteValue,.couponLabel,.couponValue,.cepPrefixo span,.valePresente label span,.tCartSummary th,.tCartSummary td,.itemList th,.totalValues th,.totalValues td,.lnkFullCart,.obsLC,.addressee,.addressWrp,.shippingOptions .grp label,.shippingOptions .grp .deliveryTime,.shippingOptions .grp .value,.cep label span,.register .socialLogin p,.paymentMethods .lnk,.paymentOpt li p{font-size:1.2em;}
+.cart .taxasprodutosimportados{}
+.cart .taxasprodutosimportados a{  color: #48bac6; }
+
+
+.cartSummaryWrp{overflow:hidden; margin-top:10px;}
+.cartSummary{margin-bottom:20px;}
+.emptyCart{}
+.emptyCart .wrp{padding:20px;border:1px solid #b7cedf;background:#f2f9fd;border-radius:4px;}
+.emptyCart p{font-size:1.1em;line-height:1.3em;}
+.emptyCart .innerCart{padding-left:93px;background:url(../img/ico-atencao.png) no-repeat;}
+.emptyCart em{margin-bottom:10px;font-size:1.7em;display:block;font-weight:bold;color:#e89005;}
+.emptyCart .bt{margin:20px 0;float:right;}
+table.cart,.tCartSummary{width:100%;float:left;border:1px solid #b7cedf;border-radius:4px;}
+.tCartSummary{border-bottom-left-radius:0;border-bottom-right-radius:0;}
+table.cart{margin-bottom:20px;}
+.fullCartSummary{border:1px solid #b7cedf;overflow:hidden;}
+.tCartSummary{}
+.itemList{width:76%;float:left;}
+.totalValues{width:24%;border-left:1px solid #b7cedf;}
+.tCartSummary th,.itemList th,.totalValues th{padding:16px 10px;font-weight:bold;color:#e89005;background:#f2f9fd;}
+.tCartSummary td{padding:20px 10px;font-weight:bold;text-align:center;}
+table.cart td{padding:20px 10px;vertical-align:middle;}
+table.cart > tbody td{  border-bottom: 1px solid #b7cedf;}
+table.cart .garantia td,
+table.cart .embalagem td{padding-top:8px;padding-bottom:10px;border-top:0;}
+.cart td.valorUnitario{border-left:1px solid #b7cedf;}
+.fullCartSummary .valorParcelado{font-size:0.6em;line-height:14px;display:block;margin-top:5px;}
+.prazoWrp span{/*white-space:pre-line; display: block;*/}
+.itemList td{padding:20px 20px 16px;text-align:center;line-height:16px;}
+.itemList td.produto{text-align:left;}
+.totalValues td{padding:10px;font-weight:bold;line-height:16px;text-align:center;}
+.totalValues .subtotal td{padding-top:38px;}
+.totalValues .total td{padding:24px 10px 20px;border-top:1px solid #b7cedf;font-size:1.5em;color:#1381ce;}
+tfoot .value .vTotal{white-space:nowrap;}
+table.cart .messageRow td{padding:0;border:0;}
+table.cart th{padding:16px 10px;font-weight:bold;color:#e89005;background:#f2f9fd;border-bottom: 1px solid #b7cedf;}
+table.cart th.produto{padding-left:38px;text-align:left;}
+.itemList th.produto{padding-left:50px;text-align:left;}
+.cart td.produto{vertical-align:top;}
+.cart td.subtotal,.cart .total td.valorTotal,.tCartSummary .totalItens{}
+.cart td.subtotal{}
+.cart .total .valor,.cart .total td.valorTotal{vertical-align:top;}
+.cart th.produto,.cart td.produto,.cart td.subtotal,.cart td.cep,.cart td.coupon{padding-left:40px;}
+.cart tr.total td.empty{border-top:1px solid #b7cedf;}
+.cart .fCoupon{margin-right:20px;float:left;}
+.cart .freteLabel,.cart .couponLabel,.cart .total td.valorTotal{border-left:1px solid #b7cedf;}
+.cart td.produto,.cart td.prazo,.cart td.valorUnitario{line-height:16px;}
+.cart td.produto img{margin:0 20px 50px 0;width:45px;height:45px;float:left;}
+.cart td.produto .url{display:block;}
+.cart td.produto .url strong{font-weight:normal;}
+.cart td.produto .buying a{color:#D12030;}
+.cart td.quantidade,.cart td.prazo,.cart td.valorTotal,.cart .frete .freteValue,.cart td.couponValue{text-align:center;}
+.cart td.quantidade{vertical-align:top;}
+.cart .valorUnitario,.itemList th,.itemList td.valorUnitario,.itemList td.frete{white-space:nowrap;}
+.itemList td.prazo{}
+.itemQty{margin:0 auto 5px;width:89px;}
+.itemQty input{padding:15px;margin:0 auto;width:20px;text-align:center;}
+.itemQty .adicionarItem{float:right;}
+.itemQty .removerItem{float:left;}
+.itemQty .lnk{margin-top:-22px;width:0;height:0;border-style:solid;border-width:0 5px 5px;border-color:transparent transparent #85afc8 transparent;display:block;text-indent:-999em;}
+.itemQty .removerItem .lnk{border-width:5px 5px 0;border-color:#85afc8 transparent transparent transparent;}
+.giftWrap{margin-top:10px;}
+.giftWrap a,.gesCarrinho a,.lnkRemover,td.embalagem .lnk,.cart .lnkCEP,.lnkAlterar{color:#85afc8;text-decoration:underline;}
+.cart .lnkCEP{color:#e89005;}
+.giftWrap em{margin-right:10px;}
+.lnkRemover{text-transform:capitalize;}
+.giftWrap .lnkPop{margin-right:10px;padding:4px 0 2px 22px;background:url(../img/ico-embalagem.png) no-repeat 0 2px;}
+.lnkCEP{margin-left:20px;}
+.cart td.subtotal,.cart .freteLabel,.cart .coupon .label,.cart .total .valorTotal,.cart .valorParcelado td,.valorUnitario{text-align:right;}
+td.subtotal,.cart td.freteLabel,.cart td.freteValue,.total .valorTotal,.coupon .label,.cart td.couponValue{font-weight:bold;}
+.garantia .nomeGarantia,.valor em{display:inline-block;}
+.total .valorTotal{font-weight:bold;}
+.valor{}
+.valor .vTotal{text-align:center;font-size:1.5em;font-weight:bold;white-space:nowrap;}
+.valor .valorParcelado{margin-top:7px;max-width:110px;line-height:1.2em;text-align:right;display:none}
+.valor .valorParcelado strong,.couponCode .lnk{font-weight:normal;white-space:nowrap;}
+.valor .valorParcelado em{display:block;}
+.valorTotal{font-weight:bold;}
+.prazo .valorTotal{display:block;}
+.couponLabel{text-align:right;font-weight:bold;}
+table.cart .frete td,table.cart tr.coupon td,.total .valorTotal,.valor{background:#f2f9fd;}
+table.cart .frete td,table.cart .coupon td,table.cart .total td{border-color:#b7cedf; border-top: 1px solid #b7cedf;}
+.total .empty{border:0;}
+table.cart .frete label,table.cart .coupon label{font-weight:bold;color:#1381ce;}
+table.cart .frete label span,table.cart .coupon label span{width:125px;display:inline-block;text-align:right;}
+table.cart .shippingOptions{width:100%;}
+table.cart .shippingOptions th,table.cart .shippingOptions td{padding:8px 10px;background:none;text-align:left;}
+table.cart .shippingOptions .deliveryTime{text-align:center}
+table.cart .shippingOptions .value{text-align:right}
+table.cart .shippingOptionsWrp .moreInfo{margin:5px;text-align:right}
+table.cart .shippingOptionsWrp .lnk{color:#f00;}
+.postal1{width:80px;}
+.couponCode{line-height: 14px; margin: 60px 0 0 130px;}
+.couponCode em{margin:0 8px;}
+.coupon .avisoCupom{}
+.coupon .avisoCupom p{  color: #d12030; line-height: 14px; padding: 10px 0 0 130px;}
+.coupon .avisoCupom p strong { color: #d12030; padding: 0 5px 0 0;}
+.fMessage{}
+.fMessage legend{font-weight:bold;}
+.fMessage label{margin-bottom:5px;width:80px;display:block;font-weight:bold;}
+.fMessage .grp,
+.popup .grp{margin-bottom:10px;position:relative;}
+.popup .changeEmail .bts{position:inherit;}
+.fMessage .from input,.fMessage .to input{width:430px;}
+.fMessage textarea,.popAvisoLista textarea{min-width:94%;min-height:70px;}
+.fMessage .bts{text-align:right;}
+.fMessage .btSalvar{}
+.popAvisoLista label{font-weight:bold;}
+.popAvisoLista .from input{width:94%;}
+tfoot input[type="text"]{border-color:#1381ce;}
+tfoot .bt{background:#1381ce;font-weight:bold;}
+.messageRow .validity{top:-21px;position:relative;left:69%;color:#f00;}
+.lnkFullCartWrp{margin-top:-2px;width:99.8%;float:left;border:1px solid #b7cedf;background:#f2f9fd;}
+.lnkFullCart{padding:10px 0 20px;display:block;color:#1381ce;text-align:center;background: url(../img/arrow-down.png) no-repeat center 34px;}
+.lnkFullCart.open{padding:20px 0 10px;background-position:center -18px;}
+/*
+.itemList{width:80%;float: left;}
+.itemList li{padding-bottom:16px;overflow:hidden;}
+.itemList .image{float:left;}
+.itemList .url{display:block;}
+.itemList span{display:block;float:left;margin:5px;}
+.itemList .price{font-weight:bold;}
+*/
+.addressDetailsWrp{padding:66px 30px 30px;margin:-66px -30px 0;overflow:hidden;}
+.fAddressType{margin-bottom:10px;display:inline;float:left;width:100%;}
+.fAddressType select{width:209px;margin: 20px 0 0;}
+.addressType,.addressee,.addressWrp{float:left;}
+.addressWrp .lnkEditar{padding-right:5px;border-right:1px solid #1381ce;}
+.addressWrp .lnks{margin:5px 0 0 70px;}
+.paymentOpt .addressWrp .lnks{margin-left:94px;}
+.addressType{margin-right:6%;}
+.addressee{margin-bottom:10px;width:185px;}
+.addressDetails{padding: 0;line-height:16px;overflow:hidden;margin: 0 auto;width:630px}
+.addressDetails em{font-weight:bold;}
+.paymentOpt .addressDetails em {width:90px;display:inline-block;}
+.addressWrp .address{display:inline-table;}
+.shipping{margin:20px 0;width:100%;float:left;}
+.shippingOptions em, .shippingOptions legend{font-size:1.2em;font-weight:700;}
+.shippingOptions em{color:#1381ce; margin-bottom:10px;float:left;width:100%;}
+.shippingOptions .text{margin:2px 0 20px;}
+.shippingOptions .grp{padding:15px 8px;}
+.shippingOptions .fLocker .grp{padding:0;margin-bottom:16px;border:0;}
+.shippingOptions .grp label,
+.shippingOptions .grp .deliveryTime,
+.shippingOptions .grp .value{width:38%;display:inline-block;}
+.shippingOptions .normal label{background-position:18px -38px;}
+.shippingOptions .normal.on label{background-position:18px 5px;}
+.shippingOptions .expressa label{background-position:18px -33px;}
+.shippingOptions .expressa.on label{background-position:18px 5px;}
+.shippingOptions .pickup label{background-position:18px -497px;}
+.shippingOptions .pickup.on label{background-position:18px -457px;}
+.shippingOptions .agendada label{background-position:18px -149px;}
+.shippingOptions .agendada.on label{background-position:18px -110px;}
+.shippingOptions .urgente label{background-position:18px -33px;}
+.shippingOptions .urgente.on label{background-position:18px 5px;}
+.shippingOptions .retiradaLoja label{background-position:18px -316px;}
+.shippingOptions .retiradaLoja.on label{background-position:18px -356px;}
+.shippingOptions .lockersList label{background-position:18px -235px;}
+.shippingOptions .lockersList.on label{background-position:18px -276px;}
+.fLocker .grp label{width:100%;text-indent:0;}
+.shippingOptions .grp .value{width:20%;}
+.shippingOptions .off{opacity:0.5;}
+.shippingOptions .on{
+    color: #10212d;
+    border: 1px solid #b8e1ff;
+    opacity:1;
+}
+.lockerWrp,.entregaAgendada,.retirarLoja{padding:30px;color:#1381ce;}
+.retirarLoja .storeList{margin:8px 0;}
+.retirarLoja .storeList label,.shippingOptions .fLockerList label{display:none;}
+.retirarLoja .store,.lockersAdresses .locker{padding:20px;margin-top:20px;background:#fff;border:1px solid #d5dbdb;}
+.retirarLoja .storeAddress,
+.lockerAddress{line-height:20px;display:block;}
+.retirarLoja .store em,
+.locker em{margin-bottom:10px;display:block;color:inherit;}
+.retirarLoja .storeAddresses,
+.lockersAdresses{margin-top:20px;}
+.map{width:846px;height:400px;border:1px solid #d5dbdb;border-top:0;}
+.msgEntregaAgendada{padding:10px;margin-bottom:20px;line-height:16px;background:#fff;border:1px solid #b7cedf;border-radius:4px;text-align:left;}
+.msgEntregaAgendada em{font-size:1.1em;color:inherit;}
+.msgEntregaAgendada p{margin-bottom:10px;}
+.msgEntregaAgendada .btVoltar{float:left;}
+.msgEntregaAgendada .btAceitar{font-size:1.2em;padding:9px 15px;}
+
+.pickupMainWrp{margin:20px 0;}.pickupWrp{padding: 70px 10px 10px;border:1px solid #d5dbdb;position:relative}
+.pickupWrp:before {content: "A retirada do produto no local escolhido no momento da compra, seu carregamento e transporte até o destino final é de exclusiva responsabilidade do cliente. Os pontos de retirada não possuem parceria ou filiação com empresas terceiras para realização deste serviço.";position: absolute;top: 22px;left: 20px;color: #990000;font-size: 13px;width: 95%;max-width: 880px;}
+.fPickupFilter p{margin-right:20px;float:left;}
+.fPickupFilter p.estado{padding-top:10px;width:210px;}
+.fPickupFilter .estado .info{margin-top:5px;font-size:0.9em;display:block;}
+.fPickupFilter select{width:150px;}
+.fPickupStore{background:#fff;padding:10px;margin:20px 0;border:1px solid #d5dbdb;}
+.fPickupStore em{color:inherit;}
+.fPickupStore .period, .fPickupStore .value{font-size:1.2em;}
+.fPickupStore .storeSelect,
+.fPickupStore .availability,
+.fPickupStore .shippingValue,
+.fPickupStore .storeAddress,
+.fPickupStore .storePhone{float:left;}
+.fPickupStore .storeHour{font-weight: 700;font-size: 1.2em;width: 580px;float: right;margin-bottom: 20px;}
+.fPickupStore .storeHour span{font-weight: normal;display: inline-block;width: 330px;vertical-align: top;}
+.fPickupStore .storeSelect select {width:250px}
+.fPickupStore .storeSelect,
+.fPickupStore .availability{margin-right:32px;}
+.fPickupStore .availability,
+.fPickupStore .shippingValue{line-height:50px;}
+.fPickupStore .storeAddress,
+.fPickupStore .storePhone{margin-right:65px;}
+.fPickupStore .storeInfo{margin-top:10px;width:100%;float:left;}
+.fPickupStore .storeAddress{margin-bottom:10px;line-height:18px;}
+.fPickupPersonSelect{margin:10px 0 20px;float:left;}
+.fPickupPersonSelect input,.fPickupPersonSelect span{margin-right:5px;float:left;}
+.fPickupPersonSelect span{margin-right:40px;}
+.pickupPersonName{margin-right:20px;clear:left;}
+.pickupPersonName,.pickupPersonID{margin-bottom:20px;float:left;}
+.pickupPersonName label,.pickupPersonID label{margin-bottom:5px;display:block;}
+
+.shipping legend{margin-bottom:16px;font-weight:bold;}
+.fEntregaAgendada{}
+.fLocker .fTel label{margin-bottom:16px;font-size:1em;background:none;}
+.paymentMethods{padding:0;float:left;}
+.paymentMethods li{display:block;width:240px;font-weight:bold;border-bottom:1px solid #b7cedf;display:block;background:#fff;position:relative;}
+.paymentMethods li.on{color: #fff!important;background:#84c3ea;}
+.paymentMethods li.credit.on{
+    color: #fff;
+}
+.paymentMethods li.on .lnk{color: #fff;}
+.paymentMethods li .lnk{padding-left:72px;line-height:60px;display:block;background:url(../img/ico-pag.png) no-repeat 13px 12px;}
+.paymentMethods .credit.on .lnk{background-position:13px -62px;}
+.paymentMethods .debit .lnk{background-position:13px -135px;}
+.paymentMethods .debit.on .lnk{background-position:13px -210px;}
+.paymentMethods .boleto .lnk{background-position:13px -284px;}
+.paymentMethods .boleto.on .lnk{background-position:13px -355px;}
+.paymentMethods .multi .lnk{background-position:13px -575px;}
+.paymentMethods .multi.on .lnk{background-position:13px -648px;}
+.paymentMethods .giftcard .lnk{background-position:13px -873px;}
+.paymentMethods .giftcard.on .lnk{background-position:13px -958px;}
+.paymentMethods .paypal .lnk{background-position:13px -427px;}
+.paymentMethods .paypal.on .lnk{background-position:13px -500px;}
+.paymentOpt{margin-bottom:20px;width:69%;float:left;position:relative;}
+.paymentOpt strong{padding-bottom:11px;margin-bottom:19px;font-size:1.5em;font-weight:bold;color:#e89005;display:block;border-bottom:1px solid #0c88ce;}
+div.paypal strong em{width:70px;height:19px;display:inline-block;background:url(../img/paypal-logo.png) no-repeat;text-indent:-9999em;}
+.paymentOpt .itauMobile strong{line-height:22px;}
+.paymentOpt .bt{float:right;}
+.paymentOpt .fCadastroEndereco .bt{float:none;}
+.fDebit .grp{line-height:119px;border-top:1px solid #0c88ce;}
+.paymentOpt .total{padding-bottom:10px;margin-bottom:10px;font-size:1.3em;color:#1381ce;}
+.paymentOpt .total em{font-weight:bold;color:#666;}
+.paymentOpt .flag{margin:0 20px;width:70px;height:70px;position:relative;top:30px;}
+.fGiftCard p,.fCc p,.fMulticheque p,.fVr label,.fItauMobile label,.fCadastro p,.fAgendar p,.fRetirar p,.fRetrieve p,.fEntregaAgendada p,.fchangePwd .grp{margin-bottom:16px;display:block;}
+.fEntregaAgendada .data,.fEntregaAgendada .periodo{margin:0 20px 0 0;float:left;}
+.tips {padding:20px 0 0 80px;margin-bottom:20px;border-top:1px solid #0c88ce;border-bottom:1px solid #0c88ce;background:url(../img/ico-atencao.png) no-repeat 0 20px;}
+.tips .list,.notesList{list-style:disc inside;color:#320d41;}
+.notesList{margin-top:15px;color:#1381ce;}
+.tips li,.notesList li{margin-bottom:20px;}
+.tips em{margin-bottom:12px;display:block;font-size:1.7em;font-weight:bold;color:#320d41;}
+.notes .list{margin-top:15px;list-style:disc inside;color:#1381ce;}
+.notes em{font-weight:bold;color:#1381ce;}
+.notes li{margin-bottom:15px;}
+.tips li p,.notesList p,.boleto li p{display:inline;color:#666;}
+.masterpass .tips i{padding:10px 0 0 16px;display:inline-block;font-weight:bold;}
+.masterpass .tips li p{line-height:18px;}
+.fGiftCard .cardNumber{margin-right:20%;}
+.fGiftCard label input{width:100%;}
+.fCc small,.fMulticheque small,.fItauMobile small,.fGiftCard small{margin:6px 0 0 4px;display:block;font-weight:normal;color:#afafaf;}
+.fCaptcha label{margin-top:10px;}
+.fCardNumber .iCardNumber,.fCardName .iCardName{margin-right:20px;width:398px;}
+.fCardNumber{overflow-x:hidden;}
+.fCardNumber .cards{padding-top:23px;margin:4px 0 0 -40px;width:423px;display:block;background:url(../img/cards.png) no-repeat;}
+.fCardNumber .cards.extra{background-position:0 -28px;}
+.fCardNumber .cards.gpa,.fCardNumber .cards.pf{background-position:0 -52px;}
+.fCardNumber .cards.visa{background-position:0 -78px;}
+.fCardNumber .cards.master{background-position:0 -105px;}
+.fCardNumber .cards.amex{background-position:0 -131px;}
+.fCardNumber .cards.diners{background-position:0 -158px;}
+.fCardNumber .cards.aura{background-position:0 -185px;}
+.fCardNumber .cards.elo{background-position:0 -211px;}
+.fCardNumber .cards.hipercard{background-position:0 -238px;}
+.fCc legend{padding-bottom:20px;margin-bottom:20px;width:100%;font-size:1.5em;font-weight:bold;color:#e89005;border-bottom:1px solid #b7cedf;}
+.fCc .fCardExp{margin-bottom:42px;}
+.fCardExp .month{margin-right:6px;width:80px;}
+.fCardExp .year{width:96px;}
+.fCcsc{width:28%;}
+.paymentOpt .iCsc{float:left;}
+.paymentOpt .sampleCardCode{margin:10px 0 0 9px;width:75px;height:28px;display:block;background:url(../img/cardCSC.png) no-repeat;text-indent:-9999em;float:left;}
+.fMulticheque .fCsc{margin-bottom:100px;}
+.shippingBillingAddress span{margin-bottom:10px;display:block;}
+.shippingBillingAddress label{margin-right:20px;display:inline;font-size:.9em;font-weight:normal;}
+.lnkInfo,.lnkCoupon{text-decoration:underline;}
+#divCupomCalcular span{margin-bottom:4px;display:block;text-align:left;}
+#divCupomCalcular .valePresente{padding:10px 20px;float:left;}
+.couponInfo .bts{text-align:right;}
+#divCupomCalcular .fechar{margin:30px 0 0 10px;float:left;}
+div.boleto,div.paypal{line-height:16px;}
+div.boleto li,div.paypal li{padding-bottom:5px;}
+.btFinalizarCompra,.paymentOpt .btContinuar{margin-top:20px;}
+.paymentOpt .fCadastroEndereco .btContinuar{margin:0 40px 0 0;}
+.cardsQty{position:absolute;top:8px;right:28px;}
+.fCc{width:100%;}
+.giftCard .info{margin-bottom:20px;line-height:1.6em;}
+/* tooltipLojista */
+.tooltipLojista,.tooltip{background:#fff;border:2px solid #d6e5f2;padding:15px;}
+.tooltipEntrega .item{margin-top:10px;width:400px;overflow:hidden;}
+.tooltipEntrega em{font-weight:bold;}
+.tooltipEntrega .photo{margin-right:5px;float:left;}
+.tooltipEntrega .name{margin-bottom:5px;display:block;}
+.tooltip .skuNumber,.tooltip .eanNumber{color:#c3c3c3;}
+.tooltipLojista .buying {margin-bottom:5px;}
+.tooltipLojista .photo {margin-right:10px;width:100px;height:40px;display:block;float:left;}
+
+/* temp lojista */
+.tooltipLojista .smallRating {display:none;margin-top:16px;}
+.tooltipLojista .average {display:none;padding:8px 0;margin-bottom:10px;clear:both;border-bottom:1px solid #d6e5f2;}
+
+.tooltipLojista .votes {font-size:1.1em;font-weight:bold;color:#1381ce;}
+.tooltipLojista .count, .tooltipLojista .info {}
+.tooltipLojista .fn{font-weight:bold;color:#1381ce;}
+.tooltipLojista .price {font-weight:bold;color:#c00;font-size:1.1em;}
+div.buying {margin-bottom:10px;}
+.cart .produto div.buying,.giftWrap,.gesCarrinho{margin-left:67px;}
+.gesCarrinho{margin-top:10px;}
+.cart td.garantia{padding-left:107px;background:url(../img/ico-garantia-36x36.png) no-repeat 54px 7px;}
+.cart .fiqueSeguro td.garantia {padding-left:107px;background:url(../img/ico-fique-seguro-36x36.png) no-repeat 54px 2px;}
+.cart .montagem td.garantia {
+    padding-left:107px;                                                           
+    background: url(../img/montagem-de-moveisCB-36x36.png) no-repeat 54px 2px !important;
+}
+.cart td.embalagem {padding-left:107px;}
+.corpoComparacao div.buying {margin:5px 0;line-height:14px;}
+.carrinhoResumo div.buying {margin:5px 0 10px;}
+.offerDetails {margin-bottom:10px;}
+.buying .price {font-weight:bold;color:#D12030;}
+.entrega .buying {color:#222;}
+.seller,.ratingProdLnk {color:#D12030;font-weight:bold;text-decoration:underline;}
+.ratingProd {margin-top:6px;}
+.corpoComparacao .seller {margin-left:5px;}
+.priceRange {text-decoration:underline;line-height:20px;}
+.listaLojistas .tit {text-align:left;}
+.listaLojistas .moreSellers {text-align:right;}
+.sellerList {width:100%;}
+.sellerList thead {background-color:#49BBC6;color:#FFF;font-weight:bold;}
+.sellerList .tit, .priceRange, .priceRange span {font-weight:bold;}
+.sellerList thead th a {color:#FFF;text-decoration:underline;}
+.sellerList tr {border:solid 1px #49BBC6;}
+.sellerList th, .sellerList td {padding:10px;}
+.sellerList .seller {color:#49BBC6;text-decoration:none;}
+.gesCarrinho .lnkPop{padding:4px 0 6px 46px;background:url(../img/ico-garantia-36x36.png) no-repeat;text-decoration:none; display: block; background-size: 36px;}
+.gesCarrinho .titGEs{font-weight:normal;text-decoration:underline;}
+.gesCarrinho .gesPrice{padding-left:0;display:block;}
+.gesCarrinho .ind{margin:0;text-decoration:underline;}
+.gesTimeGrp input{margin:0 auto 4px;display:block;}
+span[data-id="alertaFreteModalTipoPesado"]{color:#d12030;display:block;max-width:400px;}
+.popRetiraAviso{font-size:1.1em;}
+.retiraAviso p{line-height:20px;}
+.fRetiraRemoveProd{padding-top:5px;}
+.fRetiraRemoveProd h3{margin-bottom:20px;font-weight:bold;}
+.retiraGrp{margin-bottom:15px;display:block;line-height:12px;}
+.retiraGrp input{margin-right:5px;float:left;}
+.paymentMain .credits{padding:30px 30px 0;margin:-30px -30px 30px;background:#f6f6f6;}
+.paymentMain .credits .btUtilizar,
+.paymentMain .credits .btContinuar{padding:16px 20px;}
+.paymentMain .credits h3,.cartTotal strong{font-size:1.3em;font-weight:bold;}
+.paymentMain .credits h3{width:70%;float:left;}
+.paymentMain .cartTotal{padding-bottom:5px;margin-right:20px;border-bottom:1px solid #c8c8c8;}
+.paymentMain .cartTotal em{padding-left:122px;}
+.paymentMain .voucher .alert{width:auto;top:0;right:350px;}
+.voucher strong{font-size:1.5em;font-weight:bold;float:left;padding:0 65px;}
+.voucher strong{padding:0 55px 0 65px;}
+.paymentMain .voucher{padding:20px 0 0px 0;overflow:hidden;}
+.voucher .fVoucher{padding:0 0 10px 10px;width:260px;border-bottom:1px solid #c8c8c8;}
+.voucherWrp{width:425px;float:left;}
+.voucherWrp strong{font-size:1.6em;font-weight:bold;}
+.voucherTotal{margin-top:5px;line-height:16px;}
+.voucherTotal em{font-weight:bold;}
+.voucher .lnkExtrato{text-decoration:underline;}
+.voucher .bts{margin-left:44%;}
+.fVoucher legend{margin-bottom:5px;font-weight:bold;}
+.fVoucher label{padding:0 5px;float:left;line-height:50px;}
+.fVoucher .couponValue{width:65px;float:left;}
+.tExtractVoucher{width:100%;}
+.tExtractVoucher th{padding:10px;font-weight:bold;text-align:left;}
+.tExtractVoucher tr{border-bottom:1px solid #808b8d;}
+.tExtractVoucher td{padding:10px;}
+.tExtractVoucher .categoria a{margin-left:10px;text-decoration:underline;}
+.tExtractVoucher .total td{white-space:nowrap;}
+.creditTotalWrp,
+.mainTotalWrp{padding:10px 30px;width:220px;float:right;clear:right;border-bottom:1px solid #c8c8c8;}
+.creditTotalWrp strong,
+.mainTotalWrp strong{width:145px;display:inline-block;}
+.credits .bts{padding:30px;text-align:right;clear:both;}
+
+.endereco{margin-bottom:10px;border:15px solid #d5dbdb;background:red;}
+.register,.addressRegister,.addressListWrp,.paymentMain .wrp,.cadAdicional .wrp,.resultadoAnalise .wrp{position:relative;overflow:hidden;}
+.addressListWrp{padding-bottom:0;}
+.paymentMain .wrp{padding-right:0;}
+.paymentOpt .addressRegister{background:#f2f9fd;}
+.addressListWrp .btContinuar{margin-top:20px;float:right;clear:both}
+.addressListWrp .text,.addressRegister .text{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #d5dbdb;position:relative;}
+.addressListWrp .addressType {float: none;}
+.addressListWrp .btCadastrar{float: left;}
+.register .btLogin{position:absolute;top:20px;right:30px;}
+.register fieldset label,.fchangePwd label{display:block;margin-right:10px;margin-bottom:8px;white-space:nowrap;font-weight:bold;}
+.register fieldset.fCadastroAviso label,.fSms label,.fInfoOverLimit label,.fInfoSeguro label,.fInfoAceiteBacen label{text-indent:8px;font-weight:normal;}
+.cadastroAdicional .info em{padding:6px 10px;background:#fff5c1;border:1px solid #fc0;border-radius:4px;color:#854f01;position:absolute;bottom:-18px;left:0;width:64%;}
+.fSexo label span{font-size:.9em;font-weight:normal;}
+.register .fCadastroPessoa{padding:26px 30px 20px;background:#f2f9fd;}
+.register .fCadastroPessoa .fRadio,.fPadrao input{margin-right:10px;float:left;}
+.register .fCadastroPessoa .pFisica{}
+.register .fCadastroPessoa p{margin:0;width:150px;float:left;overflow:hidden;}
+.register legend,.fchangePwd legend{padding-bottom:15px;margin-bottom:20px;width:100%;font-size:1.8em;font-weight:bold;color:#e89005;border-bottom:1px solid #b7cedf;}
+.fCadastroPF,.fCadastroPJ{padding-right:20px;margin-right:20px;width:48%;float:left;border-right:1px solid #b7cedf;}
+.fCadastroLoja,.fCadastroAviso{width:47%;}
+.register input[type="text"]{width:80%;}
+.cardExp .month,.installmentQty,.fItauMobile .ddd,.register input.ddd,.register input.day,.register input.month,
+.fCadastro input.ddd,.fCadastro input.day,.fCadastro input.month{width:30px;text-align:center;background-size:20%;}
+.fCadastro input.tel,.fItauMobile .tel{width:72px;background-size:20%;}
+.fCadastro input.year,.cardExp .year,.register input.year{width:40px;text-align:center;background-size:20%;}
+.ind{margin-top:8px;display:block;color:#afafaf;}
+.giftWrap .ind{display:inline;}
+.register .lnkPop,.register .lnk{display:inline-block;}
+.register .isento label, .register .optantePeloSimples label{display:inline-block;line-height:12px;}
+.register .isento input{margin-right:8px;float:left;}
+.sexoM,.fCadastroAviso input,.fSms input,.fInfoOverLimit input,.fInfoSeguro input,.fInfoAceiteBacen input{float:left;}
+.register .btContinuar{float:right;}
+.fInstallment .installmentQty{padding:15px 26px 15px 20px;}
+.btLimparListaCompra,.fCadastro .btCancelar,.bt2Cards,.lnkEdit,.btCadastrar,.register .btLogin,.popup .btFechar,.resumoProposta .btCancelar,.ofertaAddressMain .btCancelar,.btCardData,.gesAlert .bt,.msgEntregaAgendada .btVoltar{padding:10px 12px;font-size:1em;color:#fff;background:#bcdbee;border-radius:4px;text-decoration:none;}
+.btLimparListaCompra:hover,.fCadastro .btCancelar:hover,.bt2Cards:hover,.lnkEdit:hover,.btCadastrar:hover,.register .btLogin:hover,.popup .btFechar:hover,.resumoProposta .btCancelar:hover,.ofertaAddressMain .btCancelar:hover,.btCardData:hover,.gesAlert .bt:hover,.btGESComprarSeparado:hover,.msgEntregaAgendada .btVoltar:hover{background:#84c3ea;}
+.btCadastrar,.btGESComprarSeparado,.msgEntregaAgendada .btVoltar{background:#85afc8;}
+.popup .btFechar{background:#fff;color:#036cab;}
+
+
+.popup .fechar .bt{float:right;}
+.popup .avisoLista{padding-right:100px;margin-bottom:20px;}
+.popup .avisoLista p{font-size:1.2em;line-height:1.3em;}
+.popup .popAvisoLista .avisoListaText02{padding:10px 0;margin-top:10px;border-bottom:1px dotted #d5dbdb;border-top:1px dotted #d5dbdb;}
+.popup .btConcluir{float:right;}
+
+.popLogin{padding-bottom:0 !important;background:#fff;overflow:hidden;}
+.popLogin .avatar{display:none;}
+.popLogin .loginUser,
+.popLogin .newUser{width:48%;float:left;}
+.popLogin .loginUser{padding-right:20px;}
+.popLogin .loginUser .grp{margin-bottom:16px;}
+.popLogin .loginUser label{font-weight:bold;display:block;}
+
+.popup{padding:0 30px 20px;}
+.popup h2,.headerPopLogin{padding:30px;margin:0 -30px 30px;line-height:1em;font-size:1.6em;color:#fff;background:#036cab;}
+.popup h2{margin-bottom:15px;padding:30px 50px 30px 30px;}
+.headerPopLogin{padding:20px 30px;margin-bottom:10px;font-size:1.4em;}
+
+.popup .fechar{position:absolute;top:20px;right:20px;}
+.popLogin .fEmail input, .popLogin .fSenha input{width:84%;}
+.popLogin .fechar .bt{margin-top:10px;}
+.popLogin .box p{font-size:1.2em;}
+
+.breadcrumb{margin:20px auto;width:500px;overflow:hidden;}
+.breadcrumb li{width:33%;float:left;text-align:center;}
+.breadcrumb .lnk{padding:10px;display:block;font-weight:bold;background:#d3d5d6;color:#fff;}
+.breadcrumb .on .lnk{background:#e89005;}
+
+.popGES .produto{margin-bottom:10px;overflow:hidden;}
+.fGES h2{margin-bottom:15px;}
+.fGES h3{float:right;padding:12px 0;font-size:1.2em;font-weight:bold;width:211px;text-align:center;}
+.popGES .image{margin-right:10px;float:left;width:50px;height:50px;}
+.gesTipos{border-right:1px solid #818B8D;}
+.gesTipos td.produto {width:150px;}
+.popGES .name{padding-top:10px;display:block;}
+.popGES .lnk{text-decoration:underline;}
+.popGES fieldset{}
+.popGES fieldset.gesConfirmAction{margin-top:10px;}
+.popGES legend{margin-bottom:10px;font-size:1.3em;font-weight:bold;}
+.popGES .duvidas{margin-bottom:5px;color:#818B8D;}
+.popGES .serviceitem{line-height:48px;border-bottom:1px dotted #818B8D;}
+.popGES .serviceitem.last{border:0;}
+.popGES .serviceitem label{font-size:1.2em;line-height:35px;}
+.popGES .serviceitem input{height:34px;}
+.popGES .wrp{padding:10px;line-height:18px;overflow-y:auto;}
+.popGES .termsCond{position:absolute;top:90px;left:0;background:#fff;}
+.popGES .termsCondAgreement{margin-top:15px;width:77%;float:left;font-size:0.9em;text-align:right;}
+.popGES .btComprarSemGarantia{padding:18px 12px;}
+.popGES .termsCond .btFechar,.popGES .faq .btFechar{position:absolute;right:20px;top:-70px;}
+.popGES .faqList{list-style:disc inside;}
+.popGES .faq h4{margin-top:20px;font-weight:700;}
+.popGES .bts{float:right;}
+.gesTipos{margin:10px 0;width:100%;}
+.gesTipos td{padding:10px;border-bottom:1px solid #818B8D;text-align:center;}
+.gesTipos .item{text-align:left;}
+.gesTipos .noGES{border-right:1px solid #818B8D;}
+.gesTipos small{margin:0 auto;font-size:0.8em;display:block;width:90px;padding-left:17px;font-weight:normal;}
+.gesTipos thead .empty{}
+.popGES .totalWrp{text-align:right;margin:0 0 20px 55%;}
+.popGES .totalWrp div{padding:5px 10px;}
+.popGES .totalWrp .total{padding-top:10px;margin-top:10px;border-top:1px solid #818B8D;font-size:1.2em;font-weight:bold;}
+.itemNOK{text-indent:-9999em;background:url(../img/icon-nok.png) no-repeat center;}
+.itemOK{text-indent:-9999em;background:url(../img/icon-ok.png) no-repeat center;}
+.flagRecomendado{font-weight:bold;color:green}
+.breadcrumb li.bcPagamentoGes{display:none !important;}
+.popGES .totalWrp em{width:150px;display:inline-block;text-align:left;}
+.popGES .totalWrp strong{width:90px;display:inline-block;}
+.gesTime{font-weight:bold;}
+.gesConfirmWrp{line-height:22px;font-size:1.2em;}
+.gesConfirmMsg em{font-weight:bold;display:block;}
+.gesConfirmAction label{padding:10px;display:block;}
+.gesConfirmAction input{margin-right:5px;}
+.gesAlert{margin-bottom:20px;width:95.7%;padding:20px;border-radius:4px;border:1px solid #818B8D;}
+.gesAlert p{padding-right:36px;width:80%;float:left;font-size:1em;line-height:18px;}
+.gesAlert .bts{}
+.cardDataWrp{position:absolute;top:-14px;right:20px;}
+.paymentMain .cardDataWrp .alert{width:auto;top:30px;right:0;white-space:nowrap;}
+.cardDataWrp .bt{}
+.cardDataWrp .info{padding:20px 10px 0 0;color:#afafaf;float:left;}
+.termsCondAgreement span {margin-top:5px;display:block;}
+.popGES .info {font-size:0.9em;line-height:14px;}
+
+.ui-widget-content{border-color:#fc0;background-color:#fff;color:#854f01;}
+.ui-widget-header {color:#854f01;border:0;background-color:#fff5c1;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{color:#666;background-color:#fff5c1;}
+.ui-state-default, .ui-widget-content .ui-state-default{border:0;}
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {top:55%;}
+.ui-icon, .ui-widget-content .ui-icon{width:0;height:0;border-style:solid;border-width:7px 0 7px 10px;border-color:transparent transparent transparent #b17501;display:block;text-indent:-999em;}
+.ui-datepicker .ui-datepicker-prev span{border-width:7px 10px 7px 0;border-color:transparent #b17501 transparent transparent;}
+.ui-widget-header .ui-state-hover {border:none;background:none;}
+
+.confirmationMain .wrp{margin-top:7px;}
+.resumoProposta .resumoDadosPessoais,
+.resumoProposta .resumoEndereco,
+.resumoProposta .resumoDadosPagamento,
+.confirmationMain .gInfo{padding:20px;margin:10px 0;line-height:18px;border:1px solid #b7cedf;border-radius:4px;}
+.resumoProposta h3{margin-bottom:10px;font-size:1.3em;font-weight:bold;}
+.confirmationMain label{display:block;font-weight:bold;color:#1381ce;}
+.confirmationMain .bts{padding:20px;margin-top:20px;width:95.4%;float:left;background-color:#dcebf3;border-radius:4px;}
+.confirmationMain .bt{margin-top:5px;float:right;font-size:1.6em;}
+.confirmationMain .bts .text{float:left;font-size:1.4em;font-weight: bold;color:#1381ce;line-height:55px;}
+.confirmationMain h3,.confirmationMain .prazoEntrega em{font-size:1.2em;font-weight:bold;color:#e89005;}
+.confirmationMain .formaPagamento .fpWrp{width:49%;float:left;}
+.confirmationMain .enderecoEntrega,.confirmationMain .enderecoPagamento{min-height:275px;width:40%;float:left;}
+.confirmationMain .enderecoEntrega{margin-right:30px;}
+.confirmationMain .enderecoPagamento{width:48%;}
+.confirmationMain .prazoEntrega{margin-top:20px;width:100%;float:left;}
+.confirmationMain .enderecoEntrega label{margin-right:10px;float:left;clear:left;}
+.confirmationMain .enderecoEntrega span{float:left;clear:right;}
+
+.notes{margin:20px;float:left;}
+
+.produtos .wrp,
+.ofertaResumo .wrp{padding:30px 30px 0;margin-bottom:30px;border:1px solid #fc0;border-top-width:3px;border-radius:4px;background:#fff5c1;}
+.fOfertaResumo{margin-bottom:30px;position:relative;}
+.fOfertaResumo .btSolicitar{position:absolute;bottom:0;left:65%;}
+.fOfertaResumo .card{margin-right:20px;min-height:75px;float:left;}
+.fOfertaResumo .grp{font-size:1.2em;line-height:1.5em;}
+.fOfertaResumo em{font-weight:bold;}
+.fOfertaResumo small{margin-top:6px;display:block;font-size:1em;}
+
+.fCadastroAdicional{width:46%;float:left;}
+.cadastroAdicional .grp02{padding-left:30px;border-left:1px solid #ecf0f1;}
+.fCadastroAdicional .fEmail label,
+.fCadastroAdicional .fCpf label{display:inline;}
+.fCadastroAdicional .fRG,
+.fCadastroAdicional .fRG input,
+.fCadastroAdicional .fProfissao select{width:100%;}
+.fCadastroAdicional .fNome input,
+.fCadastroAdicional .fRG input,
+.fCadastroAdicional .fNaturalidade input,
+.fCadastroAdicional .fNacionalidade input,
+.fCadastroAdicional .fNomeMae input,
+.fCadastroAdicional .fNomePai input{width:80%;}
+.fCadastroAdicional .sexoF{padding-left:20px;display:inline-block;}
+
+.resumoDadosPessoais,
+.resumoProposta .resumoEndereco,
+.resumoProposta .resumoDadosPagamento{width:28%;float:left;min-height:200px;}
+.resumoProposta .resumoEndereco{margin:10px;}
+.resumoProposta .resumoContrato{width:100%;overflow:hidden;}
+.resumoPropostaMain h2{margin:0;}
+.lContrato{margin-top:5px;}
+.resumoPropostaMain .subtitulo{}
+.resumoProposta .resumoContrato textarea{width:95%;height:170px;}
+.resumoProposta .fAceite{margin:30px 0;}
+.resumoProposta .fAceite label{font-size:1.3em;font-weight:bold;}
+.resumoProposta .fAceite small{padding:15px 0 0 17px;display:block;line-height:20px;}
+.resumoProposta .bts{text-align:right;}
+.resumoProposta .btCancelar{margin:20px 20px 0 0;}
+
+.voucher .wrp{line-height:18px;}
+
+.changeEmail fieldset{margin-bottom:10px;width:50%;float:left;}
+.changeEmail legend,
+.retrievePassword legend{margin-bottom:10px;font-size:1.5em;}
+.changeEmail .grp{margin-bottom:16px;}
+.changeEmail fieldset input,
+.retrievePassword fieldset input{width:80%;}
+.changeEmail label,
+.retrievePassword label{margin-bottom:10px;font-size:1.2em;display:block;font-weight:bold;}
+.changeEmail .btContinuar{float:right;}
+.popup .sucesso > p{margin-bottom:20px;}
+
+.fCadastroEndereco .fBairro input{width:60%;}
+.fCadastroEndereco .fRua,.fCadastroEndereco .fNumero,.fCadastroEndereco .fTipoEndereco,.fCadastroEndereco .fBairro,.fCadastroEndereco .fMunicipio,.fCadastroEndereco .fEstado,.fCc .fCardNumber,.fCc .fCardName,.fCc .fCcsc,.fCc .fCardExp,.fMulticheque .fCardName{float:left;}
+.fCadastroEndereco .fDestinatario,.fCadastroEndereco .fComplemento,.fCadastroEndereco .fPadrao,.fCadastroEndereco .fReferencia,.fCc .fCardName,.fCc .fInstallment,.fCc .fCdc{clear:left;}
+.fCadastroEndereco .fLocal{margin-left:50px;width:40%;float:left;}
+.fCadastroEndereco .fLocal input{width:100%;}
+.fCadastroEndereco .fBairro{width:48%;}
+.fDestinatario{width:74%;}
+.fMsgPropostaEmAnalise .subtitulo{margin-bottom:10px;}
+.fMsgPropostaEmAnalise p{margin-bottom:10px;}
+.fMsgPropostaEmAnalise .bts{text-align:right;}
+
+@media only screen and (max-width:910px) {
+.lnkCEP{display:block;margin:10px 0 0 2px;}
+.paymentOpt{width:64%;}
+}
+
+.fGES legend,.popGES .duvidas,.popGES .fechar{display:none;}
+.couponCalc label{margin-bottom:5px;font-weight:bold;display:block;}
+.authTerm{height:320px;background:#fff;}
+.popup .authTerm .btFechar{position:absolute;top:20px;right:20px;padding:10px 14px;}
+.tCoupon{margin:10px 0;font-weight:bold;}
+.tCoupon th,.tCoupon td{padding:10px 40px 10px 0;text-align:left;}
+.np{color:pink;}
+.alertaDiaUtilEntrega{margin:10px 0;line-height:16px;}
+
+.msgRestricaoEntrega{margin-top:20px;color:#d02130;}
+.cart td.produto .msgRestricaoEntrega{margin:20px 0 0 -24px;}
+.shipping .msgRestricaoEntrega{line-height:16px;}
+
+.popMM .msg, .popMM .note{margin-bottom:20px;line-height:16px;}
+.popMM .msg strong, .popMM .note strong{display:block;}
+.popMM h3{margin-bottom:20px;font-weight:bold;}
+.fSelDataMontagem label{margin-right:40px;}
+.tProductList{margin:20px 0;width:100%;border:1px solid #c8c8c8;}
+.tProductList th, .tProductList td{padding:10px;border-bottom:1px solid #c8c8c8;}
+.tProductList th{font-weight:bold;}
+.tProductList .product{line-height:16px;text-align:left;}
+.tProductList .image{margin-right:10px;float:left;}
+.tProductList .name{font-weight:bold;}
+.tProductList .datePicker{text-align:right;}
+
+/*Debito - Altera��o apresenta��o*/
+/* .debitoBox input[type="radio"]:checked:after {display: block;content: '';width: 100%;height: 100%;position: absolute;top: 0;left: 0;border: 1px solid #0c88ce;border-radius: 10px;background:#f5f5f5;box-shadow: inset 0px 0px 0px 2px #0c88ce;}
+.debitoBox input[type="radio"] {width:0;height:0;display:block;}
+label.debitoBox {width: 30%;float: left;text-align: center;position: relative;border: 1px solid;border-radius: 12px;margin: 4px;}
+.debitoBox span {float: left;width: 100%;position:relative;text-align: center;padding: 0px;margin-top: -50px;}
+.btContinuar {clear: both;} */
+
+
+/* finalizacao compra */
+.finalizaCompra .conteudo .tit {margin:16px 0;}
+.finalizaCompra .purchaseDetails {margin-bottom:10px;width:100%;}
+.finalizaCompra .finaliza {padding-bottom:10px;background:#fff;border:1px solid #D6E5F2;-webkit-border-radius:8px;border-radius:8px;border:1px solid #D6E5F2;overflow:hidden;}
+.finalizaCompra .wrapper {padding-left:20px;overflow:hidden;height:200px;}
+.finalizaCompra .order{position:relative;margin-bottom:30px;}
+.finalizaCompra .npedido {padding:117px 25px 0 0;width:200px;float:left;text-align:center;font-weight:bold;background:url(/App_themes/CasasBahia/img/icon-pedido-finalizado.png) no-repeat 66px 25px;}
+.finalizaCompra .npedido strong {padding:6px;margin-top:17px;display:block;font-size:2.1em;font-weight:bold;color:#FFF;background:#88b743;}
+.finalizaCompra .obs {padding-top:25px;width:290px;float:left;line-height:17px;}
+.finalizaCompra .obs p {margin-bottom:10px;}
+.finalizaCompra .obs .obstxtsms {font-weight:700;color:#88b743;}
+.finalizaCompra .obs h4 {font-weight:bold;}
+.finalizaCompra .obs li {float:left;}
+.msgApp{width:330px;height:146px;position:absolute;top:30px;right:30px;background:url(../img/bnr-app-cb-qrcode.png) no-repeat;}
+.msgApp em{display:none;}
+.msgApp .appStoreList{margin-top:126px;}
+.msgApp li{float:left;margin-right:6px;}
+.msgApp a{width:60px;height:20px;display:block;text-indent:-9999em;}
+.barCodeNumber{margin-right:20px;float:left;padding:30px;width:45%;text-align:left;}
+.barCodeNumber .txt,.barCodeNumber .code{font-size:1.4em;}
+.barCodeNumber .code{line-height:24px;font-weight:bold;font-size: 2em;width: 50%;margin-top: 10px;}
+.barCodeNumber .bt{margin-top: -44px;float:right;font-size:1.3em;}
+.receberAvisoSms{padding:20px;width:41%;text-align:left;float:left;}
+.receberAvisoSmsOK{min-height:98px;}
+.receberAvisoSms .phoneNumber{width:85px;margin:10px 0 5px;}
+.receberAvisoSms .dddPhoneNumber{margin-top:5px;width:15px;}
+.receberAvisoSms .fPhone .bt{padding:10px 16px;}
+.receberAvisoSms .error{display:block;color:#f00;}
+.finalizaCompra .itensDetails {width:100%;}
+.finalizaCompra .itensDetails th{text-align:left;}
+.finalizaCompra .itensDetails .prazoEntrega{padding:1em 2em 0 2em;}
+.finalizaCompra .nomeProd img {margin-right:10px;float:left;}
+.finalizaCompra .purchaseInfoDetails div {padding:5px 10px 0;}
+.finalizaCompra .voltarLoja {margin:20px 0;width: 100%;}
+.finalizaCompra .bnrMbox{width:100%;text-align:center;}
+.finalizaCompra .popdebito .bt, .finaliza .imprimir .bt, .finaliza .acompanhe .bt, .finaliza .popoperadora .bt, .finaliza .sms .bt, .printPage .bt {background:url(/App_themes/CasasBahia/img/imgInterna.png) no-repeat;overflow:hidden;display:block;text-indent:-9999em;line-height:80px;}
+.finalizaCompra .imprimir .bt {margin-right:10px;width:200px;height:38px; background-position: 0 -920px;}
+.finalizaCompra .imprimir .bt:hover {background-position:0 -960px;}
+.finalizaCompra .acompanhe .bt {width:149px;height:13px;background-position: 0 -1000px;}
+.finalizaCompra .acompanhe .bt:hover {background-position:0 -1035px;}
+.finalizaCompra .sms .bt {width:356px;height:7px;background-position:0 -1338px;}
+.finalizaCompra .obs iframe {display:none;}
+.finalizaCompra .obs ul {margin-top:17px;overflow:hidden;}
+.finalizaCompra .obs ul li  {float:none;margin-bottom:5px;}
+.finalizaCompra .receberAvisoSms legend{line-height:1.4;}
+.finalizaCompra .fPhone{margin-top:5px;}
+.finalizaCompra .fPhone .bt{padding:16px;}
+.finalizaCompra .popdebito,.finaliza .popoperadora {margin-right:10px;}
+.finalizaCompra .popoperadora .bt, .finaliza .popdebito .bt {padding:0;height:33px;width:200px;}
+.finalizaCompra .popdebito .bt {background-position:0 -1198px;}
+.finalizaCompra .popdebito .bt:hover{background-position:0 -1233px;}
+.finalizaCompra .popoperadora .bt {background-position:0 -1268px;}
+.finalizaCompra .popoperadora .bt:hover{background-position:0 -1303px;}
+.finalizaCompra .wp th.nomeProd th, .finaliza .wp th.nomeProd td {padding:0;border:0;}
+.finalizaCompra .wp th.nomeProd table {position:relative;margin:-9px 0 0 57px;}
+.finalizaCompra table.purchaseDetails th {padding:10px;color:#666;vertical-align:top;width:178px;text-align:left;border-bottom:1px solid #D6E5F2;}
+.finalizaCompra table.purchaseDetails .purchaseInfoDetails th {padding: 0 10px;color:#095ba6;}
+.finalizaCompra table.purchaseDetails td {padding:10px;border-bottom:1px solid #D6E5F2;}
+.printPage .bt {margin:-48px 0 12px 795px;width:121px;height:18px;background-position:0 -1402px !important;cursor:pointer;}
+.prazoEntrega h3,.resumoPedido .tit, .resumoPedido .itensDetails th{padding:0 10px;line-height:26px;background:url(/App_themes/CasasBahia/img/bgBox1.gif) repeat-x 0 -110px #E6F1FB;font-weight: 900;color: #095ba6;}
+.resumoPedido .itensDetails th {white-space:nowrap;}
+.infoPedido, .prodPedido, .smsPedido {margin-bottom:20px;width:400px;border:1px solid #c7e2fc;}
+.infoPedido th {font-weight:normal;white-space:nowrap;}
+.infoPedido .status strong {padding:2px 4px;color:#FFF;background:#88b743;text-transform:uppercase;}
+.resumoPedido .tit {margin:0 !important;font-size:1em;}
+.resumoPedido th {color:#333;line-height:14px;text-align:left;background:none;}
+.resumoPedido td {padding:5px 10px;}
+.resumoPedido .garantia .nomeProd{line-height:45px;}
+.prodPedido td {text-align:right;white-space:nowrap;}
+.prodPedido tr.prod td {border-bottom:1px solid #c7e2fc;}
+.prodPedido td.nomeProd {text-align:left;white-space:normal;}
+.prodPedido th.precoProd, .prodPedido td.qtdProd {text-align:center;}
+.prodPedido tfoot td {font-weight:normal;border:none;}
+.itensDetails .precoProd{font-weight:bold;white-space:nowrap;}
+.finalizaCompra td.prazo fieldset{color:#C00;}
+.imprimirBoleto{padding:20px;text-align:right;}
+.smsPedido {float:left;}
+.smsPedido .grp {padding:5px;float:left;}
+.smsPedido label {font-weight:bold;line-height:24px;}
+.smsPedido .fsmsAutoriza label {line-height:18px;}
+.smsPedido label, .smsPedido input {margin-left:5px;float:left;}
+.bannerCartao {display:none;}
+.bannerEbit {text-align:center}
+
+/*boleto iframe*/
+.finalizaCompra .boleto {background:none;padding:0;height:auto;width:99.7%;border-top:1px solid #dbeefd;border-bottom:1px solid #dbeefd;}
+.finalizaCompra .boleto .wrapTitle,.boletoPendente .tit{background:url(/App_themes/CasasBahia/img/bgBox1.gif) repeat-x 0 -104px;}
+.finalizaCompra .boleto .tit {margin:0;font-size:1.091em;color:#094371;font-weight:bold;padding:10px 20px;}
+.finalizaCompra .boleto .wrapContent{text-align:right;}
+.finalizaCompra .boletoPendente .wrapContent,.prazoEntregaPadrao{padding:20px;text-align:center;}
+.prazoEntregaPadrao{line-height:20px;}
+.finalizaCompra .boleto .wrapBottom {padding:10px 0;text-align:right;}
+.finalizaCompra .boleto .wrapBottom .bt {display:inline-block;}
+.finalizaCompra .boletoPendente .text{line-height:20px;}
+.finalizaCompra .boletoPendente .text strong{font-size:1.1em;}
+.finalizaCompra .boletoPendente .lnk{color:#0f69bc;text-decoration:underline;}
+.finaliza .wp th.nomeProd th, .finaliza .wp th.nomeProd td {padding:0;border:0;}
+.finaliza .wp th.nomeProd table {position:relative;margin:-9px 0 0 57px;}
+.carroussel-produtos-recomendados .lista-prod-sugerido{border:1px solid #D6E5F2;border-radius:8px;overflow:hidden;height:221px;}
+.fullCart .carroussel-produtos-recomendados h2{color:#069;height:40px;background:#E5F1FB;border-radius:8px 8px 0 0;font-size:16px;line-height:40px;padding-left:10px;}
+.fullCart .carroussel-produtos-recomendados h2 b{font-weight:normal;}
+.carroussel-produtos-recomendados .prateleira li{width:32.9%;display:block;text-align:left;position:relative;float:left;}
+.carroussel-produtos-recomendados .hproduct{padding:5px;margin:10px;height:150px;border:1px solid transparent;}
+.carroussel-produtos-recomendados .hproduct:hover{background:url(../img/prateleiraRecomendacaoBG.gif) repeat-x 0 -120px;overflow:hidden;}
+.carroussel-produtos-recomendados .hproduct a{color:#000;line-height:15px;}
+.carroussel-produtos-recomendados .productImage{margin-right:15px;float:left;}
+.carroussel-produtos-recomendados .productDetails{margin-top:8px;display:block;}
+.carroussel-produtos-recomendados .productDetails .regular{font-size:0.9em;}
+.carroussel-produtos-recomendados .productDetails .sale{margin-top:5px;font-size:1.2em;font-weight:bold;display:block;color:#b70f15;white-space:nowrap;}
+.carroussel-produtos-recomendados .name {padding-bottom:5px;font-size:0.9em;height:40px;overflow:hidden;display:block;font-weight:normal;}
+.carroussel-produtos-recomendados .comprar{position:absolute;right:20px;bottom:15px;}
+.carroussel-produtos-recomendados .comprar .bt{padding:0;border:0;width:146px;height:25px;text-indent:-9999em;background:url(../img/btAddCart-recomendacao.png) no-repeat;}
+.carroussel-produtos-recomendados .comprar .bt:hover{background-position: 0 -27px;}
+.carroussel-produtos-recomendados{margin-bottom:20px;position:relative;}
+.carroussel-produtos-recomendados .carousel{padding:0 19px;overflow:hidden;position:relative;}
+.carroussel-produtos-recomendados .contCarousel{overflow:hidden;width:100%;}
+.backCarousel span,.nextCarousel span{display:none;}
+.backCarousel,.nextCarousel{position:absolute;top:50px;left:10px;width:17px;}
+.backCarousel strong,.nextCarousel strong{background:url(../img/arrows.png) no-repeat;display:block;width:17px;height:34px;text-indent:-999em;cursor:pointer;}
+.carroussel-produtos-recomendados .desactive{cursor:default;}
+.nextCarousel{left:initial;right:10px;}
+.nextCarousel strong{background-position:-33px 0;}
+.backCarousel.desactive strong{cursor:default;background-position:0 -69px;}
+.nextCarousel.desactive strong{cursor:default;background-position:-33px -69px;}
+
+.gesAuthTermWrp,.gesInfo{margin:0 20px 20px;padding:20px;border:1px solid #D6E5F2;border-radius:4px;}
+.gesInfo .protocolo{font-size:1.333em;}
+.gesInfo .protocolo strong,.prazoEntregaPadrao strong{color:#1381ce;}
+.gesInfo .msg,.gesInfo .email{margin:12px 0;}
+.gesInfo .info {line-height:16px;}
+.gesAuthTermWrp em{font-size:1.3em;margin-bottom:10px;display:block;}
+/* tela intermediaria debito */
+.pagDebitoInt {padding:10px 0;text-align:center;}
+.pagDebitoInt p {padding-bottom:30px;font-size:1.4em;font-weight:bold;}
+.pagDebitoInt .bt{padding:14px 20px;margin:0 auto;font-size:2em;font-weight:bold;color:#fff;}
+
+.changePwd .wrp{padding:30px;border:1px solid #b7cedf;border-radius:4px;}
+.userPhotoWrp{background:#f3f3f3;padding:30px;overflow:hidden;}
+.userPhoto{margin-right:30px;}
+.userPhotoWrp .bt{padding:0;font-size:1em;color:#1381ce;font-weight:normal;border:0;background:none;cursor:pointer;}
+.userPhotoWrp .bt:hover,.userProfile .lnk:hover{text-decoration:underline;}
+.accountInfo,.customerService{margin:30px 0;padding:0 30px;}
+.changePwd .customerService {padding:0;}
+.accountInfo h3,.customerService h3,.accountInfo .tit,.customerService .tit{padding-top:15px;margin-bottom:20px;width:100%;font-size:1.8em;font-weight:bold;border-top:1px solid #dedede;}
+.addresses .btVoltar{margin-top:10px;}
+.fchangePwd .info{margin-bottom:20px;}
+.fchangePwd .erro{margin-bottom:10px;line-height:1.4;color:#f00;}
+.fchangePwd .sucesso{margin-bottom:10px;line-height:1.4;color:#090;}
+.customerService .lnk{color:#1381ce;}
+.customerService .lnk:hover{text-decoration:underline;}
+/* Padrao Abas */
+.abas{overflow:hidden;position:relative;top:2px;z-index:1;padding-left:20px;}
+.abas li {background:#fff;-webkit-border-radius:8px 8px 0 0;border-radius:8px 8px 0 0;float:left;margin-right:14px;border:1px solid #b7cedf;border-bottom:0;}
+.abas li a {padding:0 20px;color:#069;height:40px;line-height:40px;font-weight:bold;text-align:center;display:block;}
+.abas .inativo {background:#3178C1;height:31px;line-height:31px;margin:8px 20px 0 0;border:0;}
+.abas .inativo:hover {background:#fff;}
+.abas .inativo:hover a {color:#069;}
+.abas li.inativo a {color:#fff;height:31px;line-height:31px;}
+/*Remo��o chaordic_shoppingcart carrinho*/
+.fullCart #chaordic_shoppingcart{ display:none;}
+
+.addressListWrp .addressDetails {width: 61%;}
+.addressDetailsWrp .btCadastrar {float: left;}
+
+/*.finaliza .multiplusBox1{display:none;}*/
+
+
+/*iframe multiplus*/
+.multiplus .mainWrp{border:1px solid #d6e5f2;overflow:hidden;width:968px; margin:5px 0 0;}
+.multiplus h1{text-indent:-999em;display:block;height:0;width:1px;}
+.multiplus .wrp{padding:0 15px;margin:20px 0;float:left}
+.multiplus .user{width:380px;border-right:1px solid #d6e5f2}
+.multiplus .user legend{line-height:18px;color:#666}
+.multiplus div > .tit{display:block;font-size:1.1em;font-weight:700;margin-bottom:10px}
+.multiplus .tit{color:#3c323b}
+.multiplus .fAffiliateNumber{margin-top:35px;position:relative}
+.multiplus .points,.multiplus .user label{font-weight:700}
+.multiplus .user label{width:92px;color:#969696;font-size:12px;display:block;float:left;line-height:14px;position:relative;padding:5px 0 0}
+.multiplus input.affiliateNumber[type="text"]{padding:5px;width:128px;height:27px;line-height:20px;text-align:center;border:1px solid #d5d5d5}
+.multiplus .error{position:absolute;top:-30px;left:0;background:#c30f19;color:#fff;padding:6px 0;text-align:center;width:100%;font-weight:700}
+.multiplus .bt{transition:initial}
+.multiplus .btEnviar{background:#85afc8;border:none;font-size:1.4em;padding:9px 22px;border-radius:5px}
+.multiplus .tooltip{width:23px;height:23px;border-radius:50px;background:#d5d5d5;color:#fff;text-align:center;font-size:13px;padding:0;line-height:20px;border:none}
+.multiplus a.tooltip{left:62px;position:absolute;top:8px}
+.multiplus .tooltip br{display:none}
+.multiplus .tooltip .msgBox{display:none}
+.multiplus .tooltip:hover .msgBox{padding:10px;width:345px;display:block;font-size:11px;color:#85afc8;position:absolute;bottom:40px;left:-70px;background:#f2f9fd;border:1px solid #bfd4e3;box-shadow:1px 1px 5px #ccc;-webkit-box-shadow:1px 1px 5px #ccc;-moz-box-shadow:1px 1px 5px #ccc}
+.multiplus .tooltip:hover .msgBox .tit{font-size:11px;color:#85afc8}
+.multiplus .newUser{width:470px;font-size:12px;color:#666;padding:0 0 0 60px}
+.multiplus .newUser .chkLabel{color:#969696;font-size:11px}
+.multiplus .msgBox .msg{display:block;color:#85afc8}
+.multiplus .fAuth{margin-top:15px}
+.multiplus .fAuth input{margin:3px 5px 0 0;float:left}
+.multiplus .fAuth label{float:left;line-height:16px;width:95%}
+.multiplus .fAuth label br{display:none}
+.multiplus .btCadastrar{margin-top:12px;border:0;width:256px;height:40px;text-indent:-9999em;position:relative;background:url(../img/bt-cd-multiplus.gif) no-repeat center center #85afc8!important;border-radius:5px;color:#fff}
+.multiplus .btWrp input:disabled { opacity:0.5;}
+.multiplus .info{display:none}
+.multiplus .info .lnk{color:#4e4c4c}
+.multiplus .success em{font-weight:700}
+.multiplus .success .msg{margin:10px 0}
+.multiplus .success strong{color:#c30f19}
+
+.socialLogin,
+.informacoesContaSocial{display:none!important}
+
+/* Alerta BF */
+.alertDisponibilidade {  margin: 0; padding: 0; width: 100%;  clear: both; }
+.alertDisponibilidade .alert { background: #ffef97; color:#d27800; border:0; width: 930px;  padding: 20px; font-size: 14px; }
+.alertDisponibilidade .alert[style*="inline;"] { display: block !important; }
+
+/* POP ESQUECI MEU EMAIL
+===================================================================================================*/
+.resetemail-header .resetemail-title { margin: 0 -30px 30px;color: #FFFFFF; font-size: 2em;}
+.resetemail-header .resetemail-close { position: absolute; top: 25px; right: 20px; width: 35px; height: 35px; background: #fff; border-radius: 50px; text-align: center; line-height: 32px; font-size: 18px; font-weight: 700; color: #036cab;}
+.resetemail-texto { font-size: 1.167em; color: #666666; line-height: 1.333em; margin-bottom: 20px; }
+.resetemail-textocenter { font-size: 1.167em; color: #666666; line-height: 1.333em; margin-bottom: 20px; text-align: center; }
+.resetemail-textopreenchimentoobrigatorio { font-size: 0.857em; color: #b7b7b7; display: block; margin-top: 15px; }
+.resetemail-form { margin-top: 25px; overflow: hidden; font-family:"Segoe UI", arial, helvetica, sans-serif; }
+.resetemail-form > div {overflow: hidden; margin-bottom: 20px;}
+.resetemail-pessoa > div {float: left;margin-right: 100px;}
+.resetemail-pessoa label { font-size: 1.167em; color: #333333;vertical-align: middle;}
+.resetemail-formpessoa { display: none; }
+.resetemail-formpessoa label { font-size: 1.333em; color: #666666; margin-bottom: 10px; display: block; }
+.resetemail-formpessoa input { color: #9f9f9f; }
+.resetemail-formpessoa .campo-cpf-cnpj {width: 90%;}
+.resetemail-formpessoa .informenascimento,
+.resetemail-formpessoa .informetelefone { margin-top: 20px; width: 50%; float: left; }
+.resetemail-formpessoa .camponascimento { margin-right: 5px; width: 25%; }
+.resetemail-formpessoa .camponascimento-1,
+.resetemail-formpessoa .camponascimento-2 {width: 10%;}
+.resetemail-formpessoa .campotelefone-ddd { margin-right: 5px;width: 10%;}
+.resetemail-formpessoa .campotelefone-numero {width: 57%;}
+.resetemail-captchatexto { margin-bottom: 10px; font-size: 1.333em; color: #666666; }
+.resetemail-emailacesso { display: block; text-align: center; background-color: #f2f2f2; color: #666666; font-size: 1.500em; padding: 15px 0; font-weight: bold; }
+.resetemail-email { margin-bottom: 20px; }
+.resetemail-telefonesac { display: block; text-align: center; background-color: #f2f2f2; color: #666666; font-size: 1.500em; padding: 15px 0; margin-bottom: 20px; }
+/*.resetemail-botaoenviardados, .resetemail-botaotentarnovamente { float: right; }*/
+
+.controleQuantidade[style*="display: inline"] {display: block !important;}
+
+
+/*Temp preco De Carrinho*/
+.garantiapanel-pricegroup .garantiapanel-price del, .fullCart .valorUnitario del{ display: none;}
+
+/*Carrinho*/
+.TotaltDiscount{ display: none; }
+table[data-id="produtos"] .PaymentDiscountWrap { text-align: right; display: none !important; }
+table[data-id="produtos"] .PaymentDiscountWrap .discount { display: none; font-size: 14px; font-weight: bold; margin-bottom: 5px; }
+table[data-id="produtos"] .PaymentDiscountWrap .DiscountCondition { display: none; }
+
+.paymentMethods .PaymentDiscountWrap{display: none;}
+
+/*checkout*/
+table[data-id="resumoProdutos"] .PaymentDiscount { font-size: 10px; margin-top: 10px; border: 1px solid #d5dbdb; padding: 10px 3px; display: none !important; }
+table[data-id="resumoProdutos"] .PaymentDiscount .discount { display: none; font-size: 12px; }
+
+/*Pagamento*/
+ul.[data-id="menuPagamentos"] .DiscountCondition { position: absolute; top: 38px; font-size: 10px; left: 72px; color: #666; display: none !important; }
+
+.btPassword, .btAddresses, .btDuvidas { background: #85afc8; }
+.btPassword:hover, .btAddresses:hover, .btDuvidas:hover { background: #63acd8; }
+.accountInfo h3, .customerService .tit {color: #e89005;}
+.userProfile .required {position: relative;bottom: 0px; right: 0px;top: 12px;}
+.fCadastroPF, .fCadastroPJ {border-right: 1px solid #dfebf4;}
+.register legend, .fchangePwd legend {border-bottom: 1px solid #dfebf4;}
+.accountInfo h3, .customerService h3, .accountInfo .tit, .customerService .tit { border-top: 1px solid #dfebf4; }
+.accountInfo {margin: 0 0 30px 0;}
+
+.v-checkout-wrapper { float: left; margin-right: 30px; position: relative; top: -5px;}
+
+/* boleto mais cartao*/
+#btFpBoletoMaisCartao {
+    margin-left: 10px;
+}
+
+/* Login Temp */
+.login .fLogin  em{ padding-bottom: 20px; }
+.login .fLogin .email label{display: block;  font-weight: 400;}
+.login .fLogin .email p em{}
+.login .fLogin .email a#lnkEmailMudou{ background: none; padding: 0 20px 10px 0;}
+.login .fLogin .email a#lnkEsqueciMeuEmail{ background: none;}
+.login .fLogin .email .iEmail{}
+
+.login .fLogin .password em{ font-weight: 400; }
+.login .fLogin .password input#rbCadastrado{}
+.login .fLogin .password input#rbNaoCadastrado{}
+.login .fLogin .password a.rbNaoCadastrado{}
+.login .fLogin .pPossuiCadastro a#lnkEsqueciSenha{ background: none; padding:10px 0;}
+.login .fLogin .pPossuiCadastro label[for=Senha]{display: block; font-weight: 400; padding: 18px 0 0;}
+.login .fLogin .password label[for=email]{ display: block; font-weight: 400; padding: 18px 0 0;}
+.login .fLogin .password label[for=rbCadastrado]{ font-weight: 400; padding: 0 25px 0 0; }
+.login .fLogin .password label[for=rbNaoCadastrado]{font-weight: 400;}
+.fLogin .iPassword { width: 90%; margin: 0 0 20px;}
+
+
+/* Checkout - bot�o Visa */
+
+.concluirCompra, .btConcluirCompra {float: right;width: 242px;}
+.concluirCompra > a {width: 202px;text-align: center;}
+.pagueCom {float: left;margin-top: 10px;-webkit-border-radius: 5px 5px 5px 5px;border-radius: 5px 5px 5px 5px;border: 1px solid #dee5ef;width: 100%;}
+.pagueCom > legend{font-size: 12px;color: #666666;line-height: 17px;margin:-2px 0 0 60px;}
+.v-checkout-wrapper {float: left;margin: 20px 0 12px 32px;}
+.v-checkout-wrapper > img{width: 176px;}
+.btPaypal, .btPaypal:hover{width: 176px;height: 35px;margin: 0 32px 25px;background: url("../img/btPaypal.jpg") no-repeat; display: none;}
+
+
+
+/* PopUp Retira */
+.popDelivery{ padding: 0; }
+.popDelivery .modalRetira{min-width: 800px;}
+.modal,.modal *,.modal *:before,.modal *:after{box-sizing:border-box}
+.modal-header{width:100%;height:70px;display:block;padding:22px}
+.modal-title{float:left;font-family:Tahoma,Arial,sans-serif;font-size:1.8em;font-weight:700}
+.modal-close{float:right}
+.modalRetira {min-width:820px;/*min-height:610px;*/overflow:hidden;border-radius:10px;background-color: #f0f0f0 !important;}
+.modalRetira .modal-content{}
+.modalRetira .modal-content:after{content:"";display:table;clear:both}
+.modalRetira .modal-header{background:#3c6bad}
+.modalRetira .modal-title{color:#fff}
+.modalRetira .modal-delivery-options{ background: #fff; }
+.modalRetira .modal-delivery-options .modal-title{text-indent: inherit;}
+.modalRetira .modal-delivery-options .modal-title::before{ content: "";}
+.modalRetira .modal-delivery-options .modal-content { padding: 0 0 15px; max-height: 620px;}
+.modalRetira .modal-delivery-options .ret-prd-selected{ background: #fff; padding: 10px 23px;}
+.modalRetira .modal-delivery-options .ret-prd-selected .modalRetira-fieldset{ padding:0; margin: 0; }
+.modalRetira .modal-delivery-options .modalRetira-logoProd, .modalRetira .modalRetira-store{}
+.modalRetira .modal-delivery-options .modalRetira-logoProd{ float: left; margin: 0 22px 0 0; }
+.modalRetira .modal-delivery-options .modalRetira-logoProd img{ height: 70px; width: 70px;}
+.modalRetira .modal-delivery-options .modalRetira-store{ height: 70px; vertical-align: middle; width: 47%; float: left; line-height: 15px; padding: 20px 0 0; }
+.modalRetira .modal-delivery-options .modalRetira-label{ color: #333333; font-size: 12px; font-weight: 400; width: 80%;}
+.modalRetira .modal-delivery-options div.buying { color: #333333; font-size: 12px;}
+.modalRetira .modal-delivery-options .seller { color: #d12030; font-weight: normal; text-decoration: none; font-size: 12px;}
+.modalRetira .modal-delivery-options .modalRetira-store .modalRetira-tit-amount{ display: block; font-size: 14px; color: #72306f; text-align: right; font-weight: 700;}
+.modalRetira .modal-delivery-options .modalRetira-store .modalRetira-amount{ display: block; font-size: 14px; color: #404040; text-align: right; padding: 0 30px 0 0;}
+.modalRetira .modal-delivery-options .ret-prd-selected .modalRetira-store .modalRetira-value{ width: 105px;  color: #004a9d; display: block; font-size: 15px; font-weight: 700; }
+.modalRetira .modal-delivery-options .see-options{ padding: 10px 23px;}
+.modalRetira .modal-delivery-options .see-options .tit-see-options{ color: #666666; font-size: 14px; font-weight: 700; border-top: 1px solid #d8d8d8; padding: 29px 0 12px; display: block;}
+.modalRetira .modal-delivery-options .see-options .tit-unavailable{ color: #666666; font-size: 14px; font-weight: 700;  padding: 29px 0 12px; display: block;}
+.modalRetira .modal-delivery-options .see-options .tit-unavailable strong{ color: #1381ce; }
+.modalRetira .modal-delivery-options .see-options .box-available{ border: 1px solid #d6e5f2; border-radius: 4px; overflow: hidden;}
+.modalRetira .modal-delivery-options .see-options .box-available li{ display: block; overflow: hidden; border-top:1px solid #d6e5f2; }
+.modalRetira .modal-delivery-options .see-options .box-available .tit-box-available { background: #f2f9fd; border-top: none;}
+.modalRetira .modal-delivery-options .see-options .box-available .type-unavailable { background: #f8e7e7; border-top: none;}
+.modalRetira .modal-delivery-options .see-options .box-available .available-delivery, .modalRetira .modal-delivery-options .see-options .box-available .available-deadline, .modalRetira .modal-delivery-options .see-options .box-available .available-value{ width: 33.3%; float: left; padding: 15px 0 10px; font-size: 14px; color: #666666;}
+.modalRetira .modal-delivery-options .see-options .box-available .tit-box-available { background: #f2f9fd;}
+.modalRetira .modal-delivery-options .see-options .box-available .tit-box-available strong{ color: #e99005; }
+.modalRetira .modal-delivery-options .see-options .box-available .available-delivery{ padding-left: 27px; }
+.modalRetira .modal-delivery-options .see-options .box-available .available-product{ width: 31.9%; float: left; padding: 15px 0 10px; font-size: 14px; color: #666666; padding-left: 27px;}
+.modalRetira .modal-delivery-options .see-options .box-available .type-unavailable .available-deadline span{ font-weight: 700; color: #b70f15; }
+.modalRetira .modal-delivery-options .see-options .box-available .type-unavailable .available-value span{ padding-left: 27px; }
+.modalRetira .modal-delivery-options .see-options .box-available .available-product span{ width: 80%; display: block; }
+.modal-delivery-options .fechar{ right: 40px; position: absolute; }
+.modal-delivery-options .btn-thickbox{ background:#fff; border-radius: 25px; height: 26px; width: 26px !important; display: block; position: relative; font-size: 0;}
+.modal-delivery-options .btn-thickbox::before{ color: #3c6bad; content: "X"; font-size: 12px !important; font-weight: 700; left: 9px; position: absolute; top: 5px;}
+.modal-delivery-options .changeAddress{ float: left; margin: 19px 0 0; }
+.modal-delivery-options .changeAddress .btAddress{ color: #e89005; font-size: 14px; text-decoration: underline; }
+.modal-delivery-options .removeProduct { float: right; width: 290px; margin: 23px 0 0;}
+.modal-delivery-options .bt{display:inline-block; height: auto; padding:11px 20px; font-size:14px; font-weight:bold; color:#fff; border:0; background-color:#0f811f; border-radius:4px;-webkit-transition:all 150ms ease;-moz-transition:all 150ms ease;transition:all 150ms ease;text-decoration:none; display: block; text-indent: initial;}
+.modal-delivery-options .bt:hover{background-color:#34ab44;}
+
+
+/*Comunica��o do prazo de entrega por produto*/
+.cart td.cep{ padding-left: 16px; padding-bottom: 24px; }
+table.cart .indisponivel{ background: #f8e7e7; }
+table.cart .indisponivel .prazoWrp{ color: #b70f15; font-weight: 700; display: block; width: 120px; text-align: left;}
+table.cart .indisponivel .itemQty input{ background: #f8e7e7;}
+table.cart fieldset.cep{ position: relative;}
+table.cart .lnkCEP{ position: absolute; top: 55px; left: 110px; }
+table.cart .entrega--info { left: 367px; position: relative; top: -50px;}
+table.cart .entrega--info .consulta-prazo-info{  border-left: 1px solid #a5a9a9; color: #404040; float: left; font-size: 12px; margin: 4px 0 4px 16px; padding: 0 0 0 16px; width: 110px;}
+table.cart fieldset.cep div[data-id|=EntregaNormalInfo] { float: left; font-size: 13px; padding: 4px 0 0; }
+table.cart fieldset.cep div[data-id|=EntregaNormalInfo] p{ font-weight: 700; }
+table.cart fieldset.cep div[data-id|=EntregaNormalInfo] p span{ display: block; font-weight: 400; padding: 4px 0 0; }
+.cart td.coupon{ padding-left: 16px;}
+table.cart .valePresente strong { display: block; width: 121px;}
+.cart td.prazo a{ color: #D12030; text-decoration: underline; font-size: 12px; display: block; }
+.prazo .valorTotal{ font-weight: 400; font-size: 13px; }
+.cart td.prazo{ vertical-align: top; }
+
+.product-ratio{width: 100%; float: left;}
+.product-ratio .tit-unavailable { color: #404040; display: block; font-size: 14px; font-weight: 700; padding: 29px 0 12px;}
+.product-ratio .tit-unavailable strong{ color: #b70f15; }
+.product-ratio .tit-box-available { background: #fff; }
+.product-ratio .tit-box-available strong{ color: #404040; }
+.product-ratio .box-available{ border: 1px solid #c6c6c6; border-radius: 4px; overflow: hidden;}
+.product-ratio .box-available .tit-box-available { display: block; overflow: hidden; border: none;}
+.product-ratio .box-available .available-product { color: #404040; float: left; font-size: 13px; padding: 15px 0 10px 27px; width: 31.9%;}
+.product-ratio .box-available .available-deadline, .product-ratio .box-available .available-value { color: #404040; float: left; font-size: 14px; padding: 15px 0 10px; width: 31.9%;}
+.product-ratio .box-available .available-deadline span{ display: block; }
+.product-ratio .box-available .available-deadline a{color: #b70f15; text-decoration: underline;}
+.product-ratio .box-available .available-value{ text-align: center; }
+.product-ratio .box-available li{  background: #fff; display: block; overflow: hidden; border-top: 1px solid #c6c6c6;}
+.product-ratio .box-available li.indisponivel {  background: #f8e7e7; display: block; overflow: hidden; border-top: 1px solid #c6c6c6;}
+.product-ratio .box-available .available-product span { display: block; width: 80%;}
+.product-ratio .box-available .available-product p{}
+.product-ratio .box-available .available-product p span{ color: #b70f15; display: inline; }
+
+
+.box-available{width: 100%; float: left; width: 99.8%;}
+.box-available .tit-unavailable { color: #404040; display: block; font-size: 14px; font-weight: 700; padding: 29px 0 12px;}
+.box-available .tit-unavailable strong{ color: #b70f15; }
+.box-available .tit-box-available { background: #fff; }
+.box-available .tit-box-available strong{ color: #404040; }
+.box-available{ border: 1px solid #c6c6c6; border-radius: 4px; overflow: hidden; margin-bottom: 10px;}
+.box-available .tit-box-available { display: block; overflow: hidden; border: none; padding-bottom: 42px;}
+.box-available .available-product { color: #404040; float: left; font-size: 13px; padding: 15px 0 10px 27px; width: 31.9%;}
+.box-available .available-deadline, .box-available .available-value { color: #404040; float: left; font-size: 14px; padding: 15px 0 10px; width: 31.9%;}
+.box-available .available-deadline span{}
+.box-available .available-deadline a{color: #b70f15; text-decoration: underline;}
+.box-available .available-value{ text-align: center; }
+.box-available li{  background: #fff; display: block; overflow: hidden; border-top: 1px solid #c6c6c6;}
+.box-available li.indisponivel {  background: #f8e7e7; display: block; overflow: hidden; border-top: 1px solid #c6c6c6;}
+.box-available .available-product span { display: block; width: 80%;}
+.box-available .available-product p{}
+.box-available .available-product p span{ color: #b70f15; display: inline; }
+
+.fPickupFilter .lnkRegras{ float: right; margin: 10px 60px 10px 0; }
+.popGES .fechar{ display: block !important; }
+.popGES .fechar .btFechar{width:26px;height:26px;float:right;text-indent:-999em;background:transparent url(/Content/CasasBahia/img/spriteGarantia.png) no-repeat 0 -200px;cursor:pointer; position: absolute; top: 0; right: 23px; display: block !important; }
+
+/*Aba Payment*/
+.SubtituloPayment {width: 35%;float: left;}
+.paymentMain .iconsPayment{ width: 100%; text-align: right; }
+.paymentMain .iconsPayment img { padding: 0 0 0 10px; width: 200px!important; height: 40px!important;}
+
+
+.SubtituloPayment { width: 35%; float: left; }
+.iconsPayment img { float: right; margin-left: 5px; height: 22px; margin-top: 26px; }
+.iconsPayment .paypal { background-color:aliceblue; }
+.paymentMain .wrp { padding-right: 0; float: left; width: 100%; }
+
+.paymentOpt {float:right;}
+
+
+/*Novo Resumo*/
+
+.loginMain .wrp,.addressMain .wrp,.paymentMain .wrp,.cadAdicional .wrp,.resultadoAnalise .wrp,.userProfile .wrp{border:none;background:#fff;}
+.addressDetailsWrp{background:none;}
+
+.boxresumo {float:left;}
+
+.boxResumo {
+    border: 1px solid #ccc;
+    float: left;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100%;    
+    background: #f4f4f4;
+    color:#000;
+}
+
+.boxResumo .alterarpedidoResumo{
+    float:right;
+    text-decoration: underline;
+    color: #1381ce;
+}
+
+.resumoProduto {
+    float: left;
+    width: 100%;
+}
+
+.resumoProutosItens {
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    float: left;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background: #fff;
+    position: relative;
+}
+
+.resumoDetalhe{
+    color:#1381ce !important;
+    font-weight:bold;
+}
+
+.resumoQtdEntrega{
+    border-right: 1px solid #b7cedf;
+    list-style: unset;
+}
+
+.resumoGarantia{
+    background: #fcfcfc;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin-top:-3px;
+    float:left;
+    margin-bottom: 8px;
+}
+
+.resumoGarantiaTipo{
+    list-style: disc;
+    margin-left: 10px;
+    float: left;
+}
+
+.resumoFormaEntrega {
+    float: left;
+    width: 50%;
+    box-sizing:border-box;
+    margin-top: 20px;
+    border-right: 1px dashed #c6c6c6;
+}
+
+.resumoPagamento {
+    float: right;
+    width: 50%;
+    box-sizing:border-box;
+    margin-top: 20px;
+}
+
+.entregaContent {
+    padding-right: 15px;
+}
+
+.pagamentoContent {
+    padding-left: 15px;
+}
+.resumoPagamentoInfo{
+    
+}
+
+.iconesResumo {
+    height: 40px;
+    margin-bottom: 3px;
+    width: 40px;
+}
+
+.resumoPagamentoInfo p{
+    margin-right:10px;
+}
+
+.resumoDashed-right {
+    border-right: 1px dashed #c6c6c6;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
+}
+
+.fEntregaTitulo{
+    font-weight:bold;
+    color:#000;
+}
+.text-right{
+    text-align:right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.resumoParceiroLink{
+    color: #b7cedf;
+    font-weight:bold;
+}
+.tabelaDiv {
+    display: table;
+}
+.tabelaItem {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+    line-height: 1.5;
+}
+
+/*Gradient*/
+
+.loadGradient {
+	width: 100%;
+    height: 14px;
+    float: left;
+    border-radius: 5px;
+    margin-bottom: 5px;
+	color: #fff;
+	background: linear-gradient(-25deg, #d3d3d3, #bdbdbd, #a8a8a8, #939393);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 2s ease infinite;
+	-moz-animation: Gradient 2s ease infinite;
+	animation: Gradient 2s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+/*Novo Endereco entrega*/
+
+.off .value {
+    background: #ccc!important;
+}
+
+.shippingOptions .off {
+    opacity: 0.5;
+    background: #f4f4f4;
+}
+
+.iconEntrega{
+    width:40px;
+    height:40px;
+    vertical-align: middle;
+    margin: 0px 20px;
+}
+
+.boxCadastrarEndereco{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    display:flex;
+}
+
+.enderecoTipo{
+    float:left;
+    background: #f4f4f4;
+    width: 30%;
+    text-align: center;
+}
+
+select#IdClienteEnderecoSelecionado {
+    margin: 10px 0px 0px;
+    width: 90%;
+}
+
+.addressType, .addressee, .addressWrp {
+    float: left;
+    display: grid;
+    padding: 10px;
+}
+
+.addressDetailsWrp .btCadastrar {
+    margin: 0px 0px 10px;
+    width: 90%;
+    float: none;
+    box-sizing:border-box;
+}
+
+.enderecoDetalhe{   
+    width:70%;
+    display:table-cell;
+}
+
+.addressWrp {
+    width: 60%;
+}
+
+.addressWrp em {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.addressee em {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.tEntrega {
+    background: #f2f9fd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #000;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    display: table;
+}
+
+input[type="radio"]:checked+.tEntrega p{
+    background:red;
+    opacity:1;   
+}
+
+input.tEntrega [type=checkbox]:checked {
+  opacity:1;  
+} 
+
+.shippingOptions .grp {
+    padding: 0px 0px 0px 10px;
+}
+
+.deliveryTime {    
+    padding-left: 15px;
+}
+
+.shippingOptions .grp .value {
+    width: 20%;
+    background: #dae8f1;
+    display: table-cell;
+    padding: 15px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    text-align: center;
+    font-weight:bold;
+    opacity: 0.5;
+}
+
+
+/*Novo Pagamento Abas*/
+
+.pgBox{
+    width:100%;
+    background:#fff;
+    box-sizing:border-box;
+}
+
+.paymentOpt {
+    padding: 0;
+    margin-bottom: 20px;
+    border: 1px solid #b7cedf;   
+    float:left;
+    width: 75%;
+    box-sizing: border-box;
+}
+
+.paymentOpt>div {
+    padding: 20px;
+}
+
+.paymentMethods {
+    float: left;
+    width: 25%;
+    display: table-cell;
+    padding: 0px 0px 20px;
+    box-sizing:border-box;
+}
+
+ul.paymentMethods li {
+    margin-bottom: 15px;
+    border: 1px solid #b7cedf;
+    padding-right: 1px;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    display: flex;
+}
+
+.paymentMethods li .lnk {
+    padding-left: 0;
+    line-height: 45px;
+    margin-left: 0;
+    background: none;
+}
+
+.iconPagamento {
+    height: 30px;
+    width: 30px;
+    display: table-cell;
+    vertical-align: middle;
+    margin: 10px;
+}
+.paymentMain .credits {
+    padding: 30px 30px 0;
+    margin: 0;
+    background: #fff;
+    border: 1px solid #b7cedf;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.paymentMain .voucher .alert {
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    right: 350px;
+    position: initial;
+}
+
+.paymentOpt .bt {    
+    margin-bottom: 15px;
+}
+
+.valorGeral {
+    float: left;
+    width: 100%;
+    display: table;
+    border: 1px solid #b7cedf;
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+}
+
+.valorGeral p {
+    width: 40%;
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 16px;
+    float: left;
+}
+
+.valorTotalCompra{
+display: table;
+}
+
+.resumoTotalValor {
+    text-align: right;    
+    padding-right: 12px;
+}
+
+.boxResumoTopo{
+    float: left;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
+}
+
+.boxResumoBottom{
+    float: left;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+    margin-bottom: 10px;
+}
+
+.resumoContent{
+    width: 100%;
+    float: right;
+}
+.boxResumoBtb{
+    width:30%;
+    float:right;
+}
+
+.boxResumoTopo h2 {
+    display: table-cell;
+    vertical-align:middle;
+}
+
+.resumoBtnFinalizar {    
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.resumoContent.valorTotalCompra p {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 11px;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.boxBreacrumb{
+    background: #f4f4f4;
+    padding:1px;
+}
+
+.resumoIconTitulo{
+    color:#1381ce;
+    font-weight:bold;
+}
+
+.resumoImportant {
+    margin: 40px 0px;
+    float: left;
+}
+
+.resumoImportant h3 {
+    color: #1381ce;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.resumoImportant ul {
+    list-style: disc;
+    padding-left: 18px;
+    line-height: 20px;
+}
+
+.resumoImportant p {
+    margin: 20px 0px;
+}
+
+.SubtituloPayment {
+    width: 100%;
+    float: left;
+}
+
+.cupomDescontoPagamento {
+    width: 37%;
+    float: left;
+    display: inline-flex;
+    margin-top: 30px;
+    bottom: 0;
+}
+
+.cupomDescontoPagamento label {
+    float: left;
+    padding: 8px 0px;
+}
+
+.cupomDescontoPagamento input {
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+    height: 0px;
+    margin: 0 5px;
+    width: 34%;
+}
+
+.cupomDescontoPagamento button {
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0px;
+    display: table-cell;
+    vertical-align: middle;
+    float: left;
+}
+
+
+.on .value span {
+    color: #10212d;
+}
+
+.on {
+    background: #f2f9fd;
+}
+
+.off {
+    opacity: 0.2!important;    
+}
+
+.shippingOptions .on .value {
+    background: #dae8f1;
+}
+
+input#btFinalizarCompraResumo2 {
+    margin-top: 15px;
+}
+
+
+
+@media only screen and (max-width: 900px){
+    .paymentOpt {width: 60%; }
+}
+
+@media only screen and (max-width: 800px){
+    .paymentOpt {width: 50%; padding-left: 64px;}
+}
+
+@media only screen and (max-width: 650px){
+   .paymentMethods {float: left;width: 100%;height: 100%;position: relative;top: 0;left: 0;z-index: 0;}
+   .paymentOpt {width: 100%;clear: both;margin-top: 55px;}
+   .paymentOpt .flag {margin: 0 auto;}
+   ul.paymentMethods li {float: left;width: 50%!important;position: relative;margin: 0px!important;padding: 0px!important;}   
+}
+
+/* Tracking de CompraFinalizada Revonline */
+.box-rev-online {min-height: 70px;background: url(../img/icon-aprovado.jpg) no-repeat 20px 20px;margin:0 0 30px 0;padding:20px 20px 15px 110px;-webkit-border-radius: 8px;border-radius: 8px;border: 1px solid #D6E5F2;text-align:left;}
+.box-rev-online .box-rev-online-esquerda { float: left; width: 400px; }
+.box-rev-online .box-rev-online-esquerda h3 { font-weight: bold; font-size: 1.272em; margin: 0 0 10px 0;}
+.box-rev-online .box-rev-online-esquerda p { line-height: 1.333em; margin: 0 0 10px 0;}
+.box-rev-online .box-rev-online-direita { background: url(../img/icon-arrow.jpg) no-repeat left; padding: 20px 20px 20px 120px; float: right; width: 219px; margin-bottom: 5px; }
+.box-rev-online .box-rev-online-direita p {line-height: 1.333em; margin: 0 0 10px 0; }
+.box-rev-online.canm .box-rev-online-esquerda {margin-top:13px;width:100%;}
+.box-rev-online.sp .box-rev-online-esquerda {width:100%;margin-top:5px;}
+.box-rev-online .btTrocarPagamento {padding: 8px 16px 10px 16px;font-size: 1.272em;}
+
+/*MASTERPASS*/
+.masterpass #detalhesEnderecoMasterpass{ margin:0 !important;}
+#btnMasterpass{cursor:pointer; float:left;}
+/* Styles go here */
+
+.box-rev-online.canm {
+    padding-bottom: 25px;
+    background: url(../img/bgPedidoReprovado.png) no-repeat;
+    position: relative;
+    border: 1px solid #D6E5F2;
+}
+
+.box-rev-online.sp {
+    padding-bottom: 25px;
+    background: url(../img/bgPedidoReprovado.png) no-repeat;
+    position: relative;
+    border: 1px solid #D6E5F2;
+}
+
+.box-rev-online.rev {padding-bottom: 25px;background: url(../img/bgPedidoReprovado.png) no-repeat;position: relative;border: 1px solid #D6E5F2;}
+
+@media (max-width:930px) {
+    .box-rev-online .box-rev-online-direita {background: none;padding: 0px;float: left;}
+    .box-rev-online .box-rev-online-direita p {width: 100%;}
+    .box-rev-online .box-rev-online-direita {width: 100%;}
+    .box-rev-online .box-rev-online-esquerda {float: left;width: 100%;}
+    .box-rev-online .btTrocarPagamento {font-size: 1.12em;}
+}
+
+/*Box Fidelidade Multiplus - Carrinho*/
+.box-fidelidade{float: left;}
+.box-fidelidade .selo-fidelidade{float: left;}
+.box-fidelidade .selo-fidelidade .cont .fidelidade-img{float: left;height: auto;margin: 6px;width: auto;}
+.box-fidelidade .selo-fidelidade .cont .fidelidade-agrupado{float:left;margin-top:15px;padding:0 5px}
+.box-fidelidade .selo-fidelidade .cont .fidelidade-agrupado .fidelidade-valor{font-size: 12px;font-weight: bold; color: #656565;}
+.box-fidelidade .selo-fidelidade .cont .fidelidade-agrupado .fidelidade-tipo{font-size: 12px;font-weight: bold;color: #656565;}
+.box-fidelidade .selo-fidelidade .cont .fidelidade-agrupado .fidelidade-nome{font-size: 12px;color: #656565;}
+.box-fidelidade .circle-fidelidade{float: left;margin: 15px 0 0 3px;position: relative;}
+.box-fidelidade .circle-fidelidade a{background:#0096db;border-radius:50px;color:#fff;display:block;font-size:10px;font-weight:700;height:15px;line-height:14px;text-align:center;text-decoration:none;width:15px}
+.box-fidelidade .fidelidade-tooltip{background: #c6c6c6 none repeat scroll 0 0;bottom: 34px;display: none;left: -303px;line-height: 25px;padding: 0;position: absolute;width: 400px;z-index: 9999;}
+.box-fidelidade .circle-fidelidade:hover .fidelidade-tooltip{display:block;}
+.box-fidelidade .fidelidade-tooltip::after,.box-fidelidade .fidelidade-tooltip::before{border:medium solid transparent;content:" ";height:0;left:50%;pointer-events:none;position:absolute;top:100%;width:0}
+.box-fidelidade .fidelidade-tooltip::after{margin-left:75px}
+.box-fidelidade .fidelidade-tooltip::before{border-top-color:#c6c6c6;border-width:16px;margin-left:95px}
+.box-fidelidade .fidelidade-tooltip .fidelidade-ch{background:#fff none repeat scroll 0 0;color:#656565;font-size:14px;font-weight:700;margin:2px 2px 0;padding:5px 15px}
+.box-fidelidade .fidelidade-tooltip ul{background:#fff none repeat scroll 0 0;margin:0 2px;padding:5px 15px}
+.box-fidelidade .fidelidade-tooltip ul li{display:inline-table;width:180px}
+.box-fidelidade .fidelidade-tooltip .fidelidade-img{float:left;height:inherit;margin:7px 10px 0 0;padding:0;width:inherit}
+.box-fidelidade .fidelidade-tooltip .fidelidade-nome{color:#656565;display:block;font-size:12px;line-height:16px;font-weight:700}
+.box-fidelidade .fidelidade-tooltip .fidelidade-valor{color:#656565;float:left;font-size:12px;font-weight: bold;line-height:16px;margin-right:3px}
+.box-fidelidade .fidelidade-tooltip .fidelidade-tipo{float: left;font-size: 12px;line-height: 17px;}
+.box-fidelidade .fidelidade-tooltip .fidelidade-info{font-size:9px;line-height:12px;font-weight:700;padding:10px;text-align:center}
+.box-fidelidade .fidelidade-tooltip .fidelidade-info > span{font-weight:700}
+table.cart .fidelidade-carrinho td{border-color:#c6c6c6}
+.fidelidade-carrinho .empty{border:0; background:none; padding: 20px 10px;}
+.fidelidade-carrinho td{border-top:1px solid #c6c6c6;border-left:1px solid #c6c6c6; background:#f6f6f6; padding: 10px!important;}
+.fidelidade-carrinho .box-fidelidade .selo-fidelidade .cont{float:left;}
+.fidelidade-carrinho .box-fidelidade .selo-fidelidade .cont .fidelidade-agrupado .fidelidade-nome{float: left; margin-right: 30px;}
+
+/* Carrossel Multiplus - Finaliza��o de compra */
+.acumuloPontos{color:#949494;float:left;height:143px;margin:20px 0}
+.acumuloPontos .box{background:#0096db none repeat scroll 0 0;float:left;padding:10px 0;position:relative;width:968px}
+.acumuloPontos .opcoes{float:left}
+.acumuloPontos .opcoes .img-apoio{background:url(../img/bahianinho-pontos-checkout.png) no-repeat;height:149px;left:5px;position:absolute;top:-6px;width:193px}
+.acumuloPontos .opcoes .descricao{border-right:2px solid #fff;float:left;margin-right:20px;padding:10px 0 10px 210px;width:173px}
+.acumuloPontos .descricao .logo-pqn{display:none;width:65px;height:65px;margin-top:35px;float:left}
+.acumuloPontos .descricao h3{color:#d6e5f2;float:left;font-size:16px}
+.acumuloPontos .descricao span{color:#fff;float:left;font-size:13px;margin-top:10px}
+.acumuloPontos .programas{float:left;margin-top:5px;width:563px}
+.acumuloPontos .programas .programa{background:#fff;border:1px solid #e7ebee;border-radius:10px;display:inline-block;height:90px;padding:10px;text-align:center;width:115px}
+.acumuloPontos .programas .programa img{margin:0 auto}
+.acumuloPontos .programas .programa h4,.acumuloPontos .programas .programa p{font-size:14px;font-weight:700;text-align:center;color:#656565}
+.acumuloPontos .programas .programa h4{margin-top:10px}
+.acumuloPontos .programas .programa p{font-weight:400}
+.acumuloPontos .programas .programa p span{font-weight:700}
+.slick-next,.slick-prev{position:absolute;top:50%;z-index:50;width:30px;height:30px;margin-top:-15px;text-indent:-999em;background-color:#ba0216;border:0;border-radius:50%;cursor:pointer;filter:alpha(opacity=0);opacity:0;transition:all 250ms ease-in-out;outline:0}
+.slick-next:after,.slick-prev:after{width:0;height:0;border-style:solid}
+.slick-prev{left:10px}
+.slick-next{right:10px}
+.slick-next:after,.slick-prev:after{content:"";position:absolute;top:8px}
+.slick-prev:after{right:12px;border-width:7px 7px 7px 0;border-color:transparent #fff transparent transparent}
+.slick-next:after{left:12px;border-width:7px 0 7px 7px;border-color:transparent transparent transparent #fff}
+.slick-next.slick-disabled,.slick-prev.slick-disabled{filter:alpha(opacity=0);opacity:0;cursor:default}
+.slick-slider:hover .slick-prev{left:0;filter:alpha(opacity=100);opacity:1}
+.slick-slider:hover .slick-next{right:0;filter:alpha(opacity=100);opacity:1}
+.slick-slider:hover .slick-next.slick-disabled,.slick-slider:hover .slick-prev.slick-disabled{filter:alpha(opacity=25);opacity:.25}
+.acumuloPontos .escolhida{display:none}
+.acumuloPontos .escolhida .descricao{float:left;position:relative;width:238px}
+.acumuloPontos .escolhida .descricao .voltar{width:26px;height:43px;text-indent:-9999px;left:20px;position:absolute;top:40px;background:url(../img/seta-sucesso-grupo-escolhido.png) no-repeat}
+.acumuloPontos .escolhida .descricao span{display:none;color:#fff;float:left;font-size:16px;margin:20px 0;padding:0;text-align:center;width:100%}
+.acumuloPontos .escolhida .logo-gde{background:#fff none repeat scroll 0 0;border:1px solid #e7ebee;border-radius:10px;height:70px;margin:12px auto;padding:15px;position:relative;width:70px}
+.acumuloPontos .escolhida .logo-gde > img{width:100%;height:100%}
+.acumuloPontos .escolhida .dados{position:relative;overflow:hidden}
+.acumuloPontos .escolhida .dados p{color:#fff;font-size:14px;text-align:left}
+.acumuloPontos .escolhida .dados p span{font-weight:700;color:#fff}
+.acumuloPontos .escolhida .dados form{margin-top:25px;width:100%}
+.acumuloPontos .escolhida .dados form .form-group{float:left;position:relative;margin-right:20px}
+.acumuloPontos .escolhida .dados form .form-group .bt{background-color:#0f811f;border:none}
+.acumuloPontos .escolhida .dados form .form-group .bt:hover{background-color:#0d6f1b}
+.acumuloPontos .escolhida .dados form .form-group input[type="text"]{padding:5px 20px 5px 18px}
+.acumuloPontos .escolhida .dados form .form-group input.error{border:1px solid red}
+.acumuloPontos .escolhida .dados form label{color:#fff;display:block;font-size:14px;font-weight:700;line-height:17px;margin-bottom:5px;text-align:left}
+.acumuloPontos .escolhida .dados form button{margin-top:17px}
+.acumuloPontos .escolhida .dados a{clear:left;float:left;font-size:12px;color:#fff;text-decoration:underline}
+.acumuloPontos .escolhida .dados .pontuacao{color: #fff;font-size: 16px;position: absolute;text-align: center;top: -20px;width: 100%;}
+.acumuloPontos .escolhida .dados .pontuacao strong{color: #fff;font-size: 30px;font-weight: 700;line-height: 35px;margin-right: 5px;}
+.acumuloPontos .escolhida .dados label.error{font-size:14px;color:#f2b8b8;position:absolute;right:0;top:0}
+.acumuloPontos .sucesso{display:none;margin:12px auto;overflow:hidden;width:84%}
+.acumuloPontos .sucesso .logo-gde,.acumuloPontos .cadastrado .logo-gde{background:#fff;border:1px solid #e7ebee;border-radius:10px;float:left;height:70px;margin-right:40px;padding:15px;width:70px}
+.acumuloPontos .sucesso img,.acumuloPontos .cadastrado img{height:100%;width:100%}
+.acumuloPontos .sucesso p,.acumuloPontos .cadastrado p{color:#fff;float:left;margin-top:5px;text-align:left;width:82%}
+.acumuloPontos .cadastrado p:nth-child(2),.acumuloPontos .sucesso p:nth-child(2){font-size:24px;line-height:27px;font-weight:700;}
+.acumuloPontos .sucesso p:nth-child(2){margin-top: 15px;}
+.acumuloPontos .cadastrado p:nth-child(2){margin-top: 25px;}
+.acumuloPontos .cadastrado p:nth-child(3),.acumuloPontos .sucesso p:nth-child(3){font-size:14px;line-height:17px}
+.acumuloPontos .sucesso p span{color:#fff}
+.acumuloPontos .sucesso a{float:left;font-size:14px;color:#fff;text-decoration:underline}
+.acumuloPontos .cadastrado{display:none;margin:12px auto;overflow:hidden;width:84%}
+.acumuloPontos .modal{display:none}
+
+/*Seguro Multiassist�ncia*/
+#idServicosOferta{ color: #404040 !important;  margin: 10px auto !important;  border:1px solid #D6E5F2 !important; font-family: Tahoma, arial, helvetica, sans-serif !important; border-radius: 4px !important;  }
+#idServicosOferta b{ color: #404040 !important;  }
+#idServicosOferta  img{ border: none !important; margin: 0; }
+#idServicosOferta td div ul { color: #2b9068 !important; }
+#idServicosOferta td span b{ color: #2b9068 !important; font-size: 14px !important; font-weight: 700; }
+#idServicosOferta td div a{ position: relative; color: #fff !important;  line-height: 25px !important; height: auto !important; width: 200px !important; background: #0f811f !important; border-radius: 0 !important; font-size: 20px !important; font-weight: 700;      padding: 11px 20px; border-radius: 4px !important;  font-size: 1.2em;}
+#idServicosOferta .linha-vertical{ border-left:1px solid #c6c6c6 !important; }
+#idServicosOferta td span{ padding: 10px 35px 10px 0; }
+
+.Background {position: fixed;width: 100%;z-index: 1;top: 0;height: 100%;left: 0;float: left;opacity: 0.8;margin: 0;background-color: rgba(10,23,55,0.8);}
+.modalBoletoFinalizado {position: fixed;top: 0;left: 0;margin-top: 3%;margin-left: 10%;width: 80%;height: 80%;background: #fff;z-index: 1;border-top-left-radius: 10px;border-top-right-radius: 10px;}
+.headerModal1 {position: fixed;top: 0;left: 0;margin-top: 4%;margin-left: 10%;width: 80%;height: 80%;z-index: 1;text-align:left;}
+.headerModal1 h3{margin-top:15px;margin-left:15px;color: #fff;}
+.fecha{z-index:2;position:fixed;top:0;right:0;margin-top:5%;margin-right:10%;border-radius:50%;}
+.impBoleto {z-index: 2;position: fixed;top: 0;right: 0;margin-top: 5%;margin-right: 15%;cursor: pointer;}
+
+.fullCart .pagueCom{ display: none; }
+
+/* Banner oferta carrinho */
+.comprejunto-office-banner{ position: relative; height: 63px; } 
+.comprejunto-office-banner td{  position: absolute; border-bottom: 1px solid #b7cedf !important; }
+.bnr-oferta-carrinho {  margin: 0; padding: 0; width: 100%;  clear: both; }
+.bnr-oferta-carrinho .office-365 { background: #fff; color:#666666; border:0; width: 956px; margin: 0 auto;  padding: 6px; font-size: 13px; font-family:Tahoma,Arial,sans-serif; overflow: hidden;}
+.bnr-oferta-carrinho .oferta-carrinho{ float: left; }
+.bnr-oferta-carrinho .oferta-carrinho a{ background:url(../img/mais-oferta-carrinho.png) no-repeat center #ff8400; width: 35px; height: 51px; display: block; border-radius: 5px; }
+.bnr-oferta-carrinho .oferta-carrinho a span{ display: block; text-indent: -9999em; }
+.bnr-oferta-carrinho .title-oferta-carrinho{  background:url(../img/office-365-carrinho.png) no-repeat 3px 4px; margin: 10px 0 0 10px; padding: 0 0 0 36px; float: left; }
+.bnr-oferta-carrinho .title-oferta-carrinho span{ display: block; font-size: 14px; }
+.bnr-oferta-carrinho .title-oferta-carrinho strong{ display: block; color: #eb3c00; font-size: 14px; }
+.bnr-oferta-carrinho .desc-oferta-carrinho{  margin: 10px 0 0 10px; padding: 0 0 0 22px; width: 230px; float: left; }
+.bnr-oferta-carrinho .desc-oferta-carrinho span{ display: block; font-size: 14px;}
+.bnr-oferta-carrinho .icon-oferta-carrinho{  margin:20px 0 0 9px; padding: 0; float: left; }
+.bnr-oferta-carrinho .icon-oferta-carrinho span{background:url(../img/office-365-carrinho.png) no-repeat 0 -48px; width: 320px; height: 24px; display: block; text-indent: -9999em;}
+.bnr-oferta-carrinho .valor-oferta-carrinho{ float: left; text-align: right; padding: 10px 0 0 20px;}
+.bnr-oferta-carrinho .valor-oferta-carrinho span{ display: block; font-size: 14px; }
+.bnr-oferta-carrinho .valor-oferta-carrinho strong{ display: block; color: #1381ce; font-size: 14px; }
+.bnr-oferta-carrinho .valor-oferta-carrinho strong i{font-weight: lighter; font-weight: 700;}
+
+
+/* Reserva */
+.confirma-reserva{ overflow: hidden; color: #757576; }
+.confirma-reserva h2{ margin: 0 0 13px 0; }
+.confirma-reserva .subtitulo{ margin: 0; }
+.confirma-reserva .cliente-reserva{ background: #f2f9fd; padding: 17px 9px; border-radius: 4px; border:1px solid #b7cedf; margin: 20px 0; }
+.confirma-reserva .cliente-reserva p{ font-size: 12px; }
+.confirma-reserva .cliente-reserva p strong{ font-weight: 700; }
+.confirma-reserva .endereco-retirada, .pague-loja{ width: 469px; min-height: 248px; margin: 0; float: left; border-radius: 4px; border:1px solid #b7cedf; font-size: 12px; padding:31px 0 0 8px;}
+.confirma-reserva .pague-loja{ margin: 0 0 0 12px; }
+.confirma-reserva .txt-endereco{ margin: 0 0 27px 0; }
+.confirma-reserva .txt-endereco ul{ line-height: 15px; }
+.confirma-reserva .prazo-retirada{ background: url(../img/icones-reserva-loja.png) no-repeat 0 0; height: 40px; padding: 0 0 0 45px; }
+.confirma-reserva .prazo-retirada p{ width: 70%; line-height: 15px;}
+.confirma-reserva .prazo-retirada p strong{  color: #1381ce; }
+.confirma-reserva h3{ padding: 0 0 20px 0; display: block; font-weight: 700; }
+.confirma-reserva .valor-loja{ padding: 0 0 20px 0; font-size: 14px; }
+.confirma-reserva .valor-loja strong{  font-size: 18px; color: #1381ce; }
+.confirma-reserva .condicao-loja{padding: 12px 0 20px 0; width: 65%; line-height: 15px;}
+.confirma-reserva .aviso-loja{ padding: 0; }
+.confirma-reserva .finalizar-reserva{ background: #dcebf3; padding: 15px 0; border-radius: 4px; border:1px solid #dcebf3; margin: 20px 0; overflow: hidden; width: 99.8%; float: left; font-size: 16px; color: #1381ce;  }
+.confirma-reserva .finalizar-reserva p{ float: left; padding: 17px 0 0 10px; }
+.confirma-reserva .bt-finalizar-reserva{ background: #0f811f; color: #fff; display: block; padding: 13px 17px; border-radius: 4px; float: right; font-weight: 700; font-size: 19px; margin: 0 47px 0 0; }
+.confirma-reserva .informacao-reserva{ margin: 0; float: left; border-radius: 4px; border:1px solid #b7cedf; font-size: 12px; padding:31px 0 0 8px; }
+.confirma-reserva .informacao-reserva h3{ color: #1381ce; }
+.confirma-reserva .txt-informacao-reserva{ margin: 0 0 23px 0; }
+.confirma-reserva .txt-informacao-reserva ul{ list-style-type: disc; padding: 0 0 0 16px; }
+.confirma-reserva .txt-informacao-reserva ul li{ padding: 0 0 20px 0; }
+.sucesso-reserva{background: url(../img/icones-reserva-loja.png) no-repeat 0 -45px; height: 25px; padding: 0 0 0 40px; font-size: 14px; display: none;}
+.sucesso-reserva strong{color: #1381ce;}
+.confirma-reserva .itensDetails{ width: 100%; margin: 10px 0; }
+.confirma-reserva .resumoPedido td { padding: 5px 10px;}
+.confirma-reserva .nomeProd img { margin-right: 10px; float: left;}
+
+/* Retira locker e correio */ 
+.fEntrega .infoPontoRetirada{ background: #fff; border:2px solid #b7cedf; margin: 5px 0; overflow: hidden;  }
+.fEntrega .infoPontoRetirada .banner-lockers{ text-align: center; border-bottom: 2px solid #b7cedf; }
+.fEntrega .infoPontoRetirada .banner-correio{ text-align: center; border-bottom: 2px solid #b7cedf; }
+.imgTelefoneLockersOuCorreios{ display: none; }
+.fEntrega .infoPontoRetirada .descricaoLockersCelularParaEnvioDeCodigo { background:url(/Content/CasasBahia/img/retira/lockers-entrega.png) no-repeat 40px 20px; color: #898989; font-size: 14px; padding: 0; margin: 0; height: 100px; float: left;}
+.fEntrega .infoPontoRetirada .descricaoLockersCelularParaEnvioDeCodigo .retira-sms{ width: 400px; margin: 20px 0 0 100px; padding: 0 0 0 30px; }
+.fEntrega .infoPontoRetirada .descricaoLockersCelularParaEnvioDeCodigo .retira-sms p{}
+.fEntrega .infoPontoRetirada .descricaoLockersCelularParaEnvioDeCodigo .retira-sms p strong{ color: #1381ce; font-size: 16px; padding: 0 0 5px 0; display: block; }
+.fEntrega .infoPontoRetirada .txtCelularParaEnvioDeCodigo{ float: left; margin: 20px 0 0 90px; }
+.fEntrega .infoPontoRetirada .descricaoCorreiosCelularParaEnvioDeCodigo { background:url(/Content/CasasBahia/img/retira/correios-entrega.png) no-repeat 40px 20px; color: #898989; font-size: 14px; padding: 0; margin: 0; height: 100px; float: left;}
+.fEntrega .infoPontoRetirada .descricaoCorreiosCelularParaEnvioDeCodigo .retira-sms{ width: 400px; margin: 20px 0 0 100px; padding: 0 0 0 30px; }
+.fEntrega .infoPontoRetirada .descricaoCorreiosCelularParaEnvioDeCodigo .retira-sms p{}
+.fEntrega .infoPontoRetirada .descricaoCorreiosCelularParaEnvioDeCodigo .retira-sms p strong{ color: #1381ce; font-size: 16px; padding: 0 0 5px 0; display: block; }
+.fEntrega .infoPontoRetirada .txtCelularParaEnvioDeCodigo{ float: left; margin: 20px 0 0 90px; }
+
+
+/*Solicitar Cart�o*/
+.FormlongText {margin-bottom: 20px;}
+iframe#ifsurpreendido {height: 1380px!important; margin: 0px 15px}
+.balons {float: right;background: #fff5c1;border: 1px solid #ffcc00;position: absolute;padding: 10px;border-radius: 4px; margin-top: 40px; max-width: 400px;}
+a.vejaMais {cursor: pointer;font-weight: bold;}
+.noFormat {border: none;background: transparent!important;color: transparent;}
+ul.dadosCartaoList li {font-size: 0.8em;}
+.solicitarcartao section{ overflow-y: hidden; overflow-x: hidden; }
+.solicitarcartao .tituloCard, .solicitarcartao .subTituloForm, .solicitarcartao .escolhiMeuCartao p{font-family: 'PlutoBold', Arial, sans-serif;}
+.solicitarcartao .cards input img.ng-touched{background:url(/Content/CasasBahia/img/surpreendido/icon_ok.png) no-repeat;background-size:contain;background-position:right;background-color:#fff;}
+.solicitarcartao .form input.ng-invalid.ng-touched{background:url(/Content/CasasBahia/img/surpreendido/icon_Alert.png) no-repeat;background-size:contain;background-position:right;background-color:#fff;}
+.solicitarcartao .form input.ng-valid.ng-touched{background:url(/Content/CasasBahia/img/surpreendido/icon_ok.png) no-repeat;background-size:contain;background-position:right;background-color:#fff;}
+.solicitarcartao .form select.ng-invalid.ng-touched{background:url(/Content/CasasBahia/img/surpreendido/icon_Alert.png) no-repeat;background-size:contain;background-position:right;background-color:#fff;background-position-x:232px;}
+/*.solicitarcartao .form select.ng-valid.ng-touched{background:url(/Content/CasasBahia/img/surpreendido/icon_ok.png) no-repeat;background-size:contain;background-position:right;background-color:#fff;background-position-x:232px;}*/
+.solicitarcartao select{padding:0 20px!important;}
+.solicitarcartao p{line-height:16px;color:#b1b1b1;}
+/*.solicitarcartao ol,ul{list-style:disc;}*/
+.solicitarcartao .formAlerta{list-style:disc;color:red;}
+.solicitarcartao .cartaoDados a{text-decoration:underline;}
+.solicitarcartao .tituloCard{color:#48bac6;font-size:24px;margin-top:5px;}
+.solicitarcartao .subTituloForm{color:#48bac6;font-size:18px;}
+.solicitarcartao .boxCartoes .subTituloForm{margin-bottom:15px;}
+.solicitarcartao .nofoco{opacity:none;}
+.solicitarcartao .focus{opacity:.5;}
+.solicitarcartao label>input{visibility:hidden;position:absolute;}
+.solicitarcartao label>input+img{cursor:pointer;border:2px solid transparent;height:130px;}
+.solicitarcartao label>input:checked+img:after{border:2px solid #50c9ce;border-radius:10px;background:url(/Content/CasasBahia/img/surpreendido/icon_ok.png) no-repeat;background-size:contain;background-position:right;background-color:#fff;}
+.solicitarcartao .icons img{margin-top:-48px;position:absolute;margin-left:-52px;}
+.solicitarcartao .iconCardOk img{margin-top:-49px;float:right;position:absolute;margin-left:54px;}
+.solicitarcartao .centerCards{text-align:center;display:inline-table;}
+.solicitarcartao .boxCartoes{border-width:6px 6px 0 6px;border:1px solid #ccc;border-radius:5px;background-color:#f8f8f8;float:left;margin-top:36px;}
+.solicitarcartao .vantDes{float:left;padding:27px 56px 30px 80px;width:50%;}
+.solicitarcartao .boxCartoes h2{color:#48bac6;font-size:20px;}
+.solicitarcartao .grey{color:#b1b1b1;}
+.solicitarcartao ul.disc{list-style-type:disc;padding-left:19px;color:#48bac6;line-height:19px;}
+.solicitarcartao .clubeExtra{float:left;padding:27px 41px 43px 50px;width:50%;}
+.solicitarcartao .clubeExtra img{float:left;width:125%;}
+.solicitarcartao .escolhiMeuCartao{width:82%;float:left;padding-top:24px;text-align:right;font-size:24px;}
+.solicitarcartao .escolhiMeuCartao p{color:#48bac6;}
+.solicitarcartao .surpreendidoOk img{width:45px!important;margin-top:-34px;margin-left:115px!important;}
+.solicitarcartao .tituloCardSurpreendido{margin-bottom:15px;}
+.solicitarcartao .tituloCardSurpreendido h2{color:#48bac6;font-size:24px;margin-bottom:0;}
+.solicitarcartao .tituloCardSurpreendido p{margin-top:5px;font-weight:bold;color:#000;opacity:.7;padding-bottom:15px;}
+.solicitarcartao .descricaoCard{opacity:.8;}
+.solicitarcartao .CartoesBox{text-align:center;}
+.solicitarcartao .sbMaisBox{background:#52346a;padding:20px 33px;border-radius:3px;}
+.solicitarcartao .aprovedCard{background:#65437e;width:100%;color:#fff;padding:25px;}
+.solicitarcartao .iconHand{float:right;text-align:center;}
+.solicitarcartao .aprovedCard img{float:right;width:218px;margin-top:-130px;margin-left:-227px;z-index:9999999999999;position:absolute;border-radius:5px;}
+.solicitarcartao .limiteBox{padding:5px;background:#462a5e;border-radius:5px;}
+.solicitarcartao #limiteAprovado{background:#52346a;padding:11px 10px 0 15px;border-radius:3px;position:relative;display:table-cell;}
+.solicitarcartao p.tituloAprovado.cardAprovado{font-size:39px;color:#fff;opacity:1;}
+.solicitarcartao .limiteBoxWhite{color:#fff;font-weight:bold;}
+.solicitarcartao #cardEnd{float:right;width:107px;margin-top:-112px;margin-left:-290px;-ms-transform:rotate(22deg);-webkit-transform:rotate(22deg);transform:rotate(16deg);position:absolute;z-index:1;}
+.solicitarcartao .aprovedCard h2{color:#fff;}
+.solicitarcartao .aprovedCard p{color:#eae5ed;margin-bottom:15px;line-height:26px;}
+.solicitarcartao .txtPersnGren{color:#48bac6;font-size:15px;}
+.solicitarcartao #obg{color:red;}
+.solicitarcartao .camposObg{float:right;margin-top:26px;margin-right:5px;}
+.solicitarcartao .bold{color:#5f5f5f;font-weight:bold;}
+.solicitarcartao .space{margin-top:7px;}
+.solicitarcartao .left{float:left;}
+.solicitarcartao .right{float:right;clear:both;}
+.solicitarcartao .cardEscolhido{margin-bottom:35px;border-radius:5px;background:#f4f4f4;border:1px solid #ccc;}
+.solicitarcartao .CartoesBoxEscolhido{height:170px;}
+.solicitarcartao .cardEscolhido .labelB{color:#000;float:left;margin:8px 18px -18px;font-size:15px;font-weight:bold;}
+.solicitarcartao .cardEscolhido label{color:#000;}
+.solicitarcartao .cards{padding-top:5px;padding-bottom:5px;padding-right:20px;}
+.solicitarcartao .infoCards{text-align:left;margin-top:5px;color:#ccc;margin-left:50px;}
+.solicitarcartao .infoCards2{text-align:left;margin-top:5px;color:#000;width:389px;}
+.solicitarcartao .cartaoDados{margin-top:17px;line-height:20px;}
+.solicitarcartao .progress{text-align:center;margin-left:15%;height:117px;}
+.solicitarcartao .barra{background-color:#d6dede;width:30%;height:10px;margin-top:14px;}
+.solicitarcartao .formActive{width:40px;height:40px;border-radius:50%;color:#fff;background-color:#00bcc9;padding-top:10px;font-weight:bold;font-size:15px;box-sizing:border-box;}
+.solicitarcartao .formActive p{color:#fff;}
+.solicitarcartao .formActive span p{color:#00bcc9;margin-top:25px;margin-left:-50px;width:150px;font-weight:bold;}
+.solicitarcartao .formDesactive{width:40px;height:40px;border-radius:50%;color:#fff;background-color:#d6dede;padding-top:10px;font-weight:bold;font-size:15px;box-sizing: border-box;}
+.solicitarcartao .formDesactive p{color:#fff;}
+.solicitarcartao .formDesactive span p{color:#d6dede;margin-top:25px;margin-left:-50px;width:150px;font-weight:bold;}
+.solicitarcartao .formConfirm{background:url(/Content/CasasBahia/img/surpreendido/checked2.png) no-repeat;width:47px;height:48px;border-radius:50%;color:#fff;padding-top:10px;margin-top:-2px;font-size:15px;}
+.solicitarcartao .formConfirm span p{color:#005c64;margin-top:41px;margin-left:-50px;width:150px;font-weight:bold;}
+.solicitarcartao .barraConfirm{background-color:#005c64;width:30%;height:10px;margin-top:15px;margin-left:-5px;margin-right:-5px;}
+.solicitarcartao #pComplementaresBar{width:180px;}
+.solicitarcartao .payment-methods{list-style:none;margin:0;padding:0;}
+.solicitarcartao .payment-methods:after{content:"";clear:both;}
+.solicitarcartao .payment-method{border:1px solid #ccc;box-sizing:border-box;float:left;height:70px;position:relative;width:120px;}
+.solicitarcartao .payment-method+.payment-method{margin-left:25px;}
+.solicitarcartao .payment-method img{float:left;display:fixed;}
+.solicitarcartao label.bold.dados{margin-bottom:-21px;color:#000;}
+.solicitarcartao .form .nameForms{height:20px;box-sizing:border-box;}
+/*.solicitarcartao .formRadio .nameForms{height:30px;}*/
+.solicitarcartao .descriptTop p{color:#48bac6;font-size:22px;font-weight:bold;}
+.solicitarcartao .descriptTop label{color:#666;}
+.solicitarcartao .cardEscolhido img{width:100%;max-width:150px;margin-left:15px;}
+.solicitarcartao .formSpaces{padding-left:15px;padding-right:15px;}
+.solicitarcartao .formSpaces > div {margin-bottom: 10px;}
+.solicitarcartao .fundoFormulario{background-color:#f4f4f4;border-radius:5px;border:1px solid #ccc;}
+.solicitarcartao .formComercial #endComercial{float:left;width:100%;border-radius:3px;border:1px solid #ccc;height:40px;}
+.solicitarcartao .checkComercial{height:40px;float:left;width:10%;margin-left:20%;}
+.solicitarcartao .checkComercial input{margin-top:15px;float:left;}
+.solicitarcartao .checkComercial p{float:left;color:#666;}
+.solicitarcartao .pRadio{float:left;margin-top:12px;color:#666;}
+.solicitarcartao .subTituloComercial{border-top:1px solid #ccc;margin-top:7px;padding-top:23px;}
+.solicitarcartao .form label{float:left;width:100%;color:#666;height:40px;}
+.solicitarcartao .formRadio label{width:100%;float:left;color:#666;height:20px;}
+.solicitarcartao .comercialFundo{float:left;width:100%;background-color:#fff;border:1px solid #ccc;border-radius:3px;height:40px;box-sizing: border-box;}
+.solicitarcartao .form select{float:left;width:100%;padding:0 0 0 22px;border-radius:3px;border:1px solid #ccc;height:40px;}
+.solicitarcartao .form input{float:left;width:100%;padding:0 0 0 22px;border-radius:3px;border:1px solid #ccc;height:40px;box-sizing:border-box;}
+.solicitarcartao .form:placeholder{color:#000;}
+.solicitarcartao label.subTituloForm{border-bottom:1px solid #ccc;padding-bottom:10px;height:auto;font-size:12px;}
+.solicitarcartao .row::after{content:"";clear:both;display:table;}
+.solicitarcartao .phone label{float:left;width:100%;}
+.solicitarcartao .phone .ddd{float:left;width:22%;border-top-right-radius:0;border-bottom-right-radius:0;border-top-left-radius:3px;border-bottom-left-radius:3px;border:1px solid #ccc;height:40px;}
+.solicitarcartao .phone .telefone{float:left;border-top-left-radius:0;border-bottom-left-radius:0;width:78%;border-top-right-radius:3px;border-bottom-right-radius:3px;border:1px solid #ccc;height:40px;}
+.solicitarcartao .SexBack{float:left;width:100%;border-radius:3px;border:1px solid #ccc;height:40px;background-color:#fff;}
+.solicitarcartao .mf{float:left;width:50%;padding-top:10px;padding-left:10px;}
+.solicitarcartao .mf input{width:20%;float:left;margin-top:3px;}
+.solicitarcartao .mf p{width:80%;float:left;}
+.solicitarcartao [class*="col-"]{float:left;padding:15px; box-sizing:border-box;}
+.solicitarcartao .btn{border-radius:5px;cursor:pointer;}
+.solicitarcartao .btn-avancar #btnSubmit{float:right;margin:15px 0 15px 15px;min-width:80px;max-width:200px;width:150px;height:40px;color:#fff;background-color:#eb1d29;border-radius:5px;border:0;font-weight:bold;cursor:pointer;border-bottom:3px solid #c30f19;}
+.solicitarcartao .btn-avancar #btnSubmit2{float:right;margin:15px 0 20px 20px;min-width:80px;max-width:200px;width:auto;height:auto;color:#fff;background-color:#eb1d29;border-radius:5px;border:0;padding:10px;text-align:center;font-weight:bold;cursor:pointer;border-bottom:3px solid #c30f19;}
+.solicitarcartao .btn-voltar #btnSubmit{float:left;margin-top:15px;min-width:80px;max-width:200px;width:150px;height:40px;color:#fff;background-color:#00bcc9;border-radius:5px;border:0;font-weight:bold;cursor:pointer;border-bottom:3px solid #04747d;}
+.solicitarcartao .btn-cancelar #btnSubmit{float:left;margin-top:15px;min-width:80px;max-width:200px;width:150px;height:40px;color:#000;background-color:inherit;border-radius:5px;border:2px solid #ccc;font-weight:bold;cursor:pointer;}
+.fundolight {position:fixed;top:0;height:100%;width:100%;background:rgba(0,0,0,0.8);left:0;padding-left:14%;z-index: 1; }
+.fundolight .superModal{max-height:500px;width:72%;float:left;position:fixed;z-index:1;display:block;top:15%;overflow-y:auto;background:#fff;border-bottom-left-radius:5px;border-bottom-right-radius:5px;}
+.fundolight .superModal::-webkit-scrollbar-track{background-color:#f4f4f4;}
+.fundolight .superModal::-webkit-scrollbar{width:12px;height:15px;background:#f4f4f4;}
+.fundolight .superModal::-webkit-scrollbar-thumb{height:100px;border-radius:4px;background:#dad7d7;}
+.fundolight .modal{position:fixed;font-family:Arial,Helvetica,sans-serif;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,0.8);z-index:99999;opacity:0;-webkit-transition:opacity 400ms ease-in;-moz-transition:opacity 400ms ease-in;transition:opacity 400ms ease-in;pointer-events:none;}
+.fundolight .modalBody{padding:85px 18px;}
+.fundolight .modalBody p{line-height:23px;font-size:16px;color:#000;}
+.fundolight .modal:target{opacity:1;pointer-events:auto;}
+.fundolight .modal>div{width:400px;position:relative;margin:10% auto;padding:5px 20px 13px 20px;border-radius:10px;background:#fff;background:-moz-linear-gradient(#fff,#999);background:-webkit-linear-gradient(#fff,#999);background:-o-linear-gradient(#fff,#999);}
+.fundolight .fechar{background:#fff;color:#fc0;line-height:25px;position:absolute;right:25px;text-align:center;top:16px;width:24px;text-decoration:none;font-weight:bold;-webkit-border-radius:12px;-moz-border-radius:12px;border-radius:12px;-moz-box-shadow:1px 1px 3px #000;-webkit-box-shadow:1px 1px 3px #fff;box-shadow:1px 1px 3px #fff; cursor:pointer;}
+.fundolight .fechar:hover{background:#fc0;color:#fff;}
+.fundolight .modalHeader{height:60px;background:#fc0;position:fixed;width:72%;}
+.fundolight .modalHeader p{color:#854f01;padding:24px 35px;font-size:22px;font-weight:bold;}
+.solicitarcartao .termos{color:#48bac6;text-decoration:underline;}
+.solicitarcartao input.resOption{width:16px;}
+.solicitarcartao span#restext{margin-top:11px;margin-left:5px;float:left;}
+.solicitarcartao .revisao{background-color:#f4f4f4;height:150px;padding:10px;border-radius:5px;margin-top:20px;margin-bottom:20px;}
+.solicitarcartao .form span.InformarErrosAoUsuario{float: left;margin-top: -22px;text-align: center;width: 100%;border-radius: 5px;background: lightblue;padding: 2px;box-sizing: border-box;}
+.solicitarcartao .form span.InformarErrosAoUsuario:after {content: "";position: absolute;margin-top: 16px;border-left: 5px solid transparent;border-right: 5px solid transparent;border-top: 5px solid lightblue;}
+
+/*Ajustes Debito e finalizada*/
+
+.resumoPedido {clear: both;border: 1px solid #D6E5F2;border-radius: 5px;}
+.WLS_gtmBannerWrapper {float: left;}
+.wrapper.order.pgtoDebitoWraper {height: 130px;border: 1px solid #D6E5F2;border-radius: 5px;}
+.pgtoDebitoWraper .msgApp {display: none;}
+.pgtoDebitoWraper .npedido {padding: 20px 43px;width: 200px;float: right;text-align: center;border-left: 1px dashed #ccc;font-weight: bold;background: none;margin: 10px 0px;}
+.pgtoDebitoWraper .wrapper {overflow: hidden;border: 1px solid #D6E5F2;margin: 10px 0px;height: 150px!important;clear: both;}
+.pgtoDebitoWraper .obs ul li {float: none;display: none;margin-bottom: 5px;}
+.pgtoDebitoWraper .obs {padding-top: 25px;width: 66%;float: left;line-height: 17px;}
+.pgtoDebitoWraper .obs:before {content: "!";display: block;float: left;font-size: 28px;color: #cc9900;border: 1px solid #cc9900;margin: 0px 18px;padding: 30px;}
+.pgtoDebitoWraper .obs h3 {font-size: 18px;font-weight: bold;margin-bottom: 12px;}
+.pgtoDebitoWraper .obs p {font-size: 14px;padding-left: 107px;}
+.prazoEntrega {border: 1px solid #D6E5F2;border-radius: 5px;clear: both;margin: 10px 0px;}
+.WLS_gtmBannerWrapper{min-width: 100%;min-height: 122px;font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;margin: 15px 0px!important;padding: 0px;width: 100%;bottom: 0;box-sizing: border-box;left: 0;text-align: center;background-color: rgb(255, 255, 255);border: 4px solid rgb(18, 130, 206);display: block;}
+.debitoBox .iRadio {position: absolute;left: -9999px;}
+
+.finalizaCompra .finaliza {padding-bottom:10px;background:#fff;-webkit-border-radius:8px;border-radius:8px;border:none;overflow:hidden;}
+.finalizaCompra .wrapper {overflow:inherit;border: 1px solid #D6E5F2;border-radius: 5px;clear:both;}
+
+/*Fim Ajustes Debito e finalizada*/
+
+/*botoes debito*/
+.fDebit {border: none;margin: 23px 0px;}
+.fDebit img {height: 40px;width: 40px;/* padding: 20px; */}
+.fDebit span {font-size: 12px;}
+.fDebit .input-hidden {position: absolute;left: -9999px;border: none;}
+/**/
+.fDebit input[type=radio]:checked+label>img {border: 1px solid #fff;margin: 0 auto;display: table-cell;}
+.fDebit input[type=radio]:checked+label {border: 1px solid #fff;display: grid;text-align: center;padding: 0px 0px 10px 0px;box-shadow: 0 0 3px 3px;}
+/* Stuff after this is only to make things more pretty */
+.fDebit input[type=radio]+label>img {display: table-cell;margin: 0 auto;/* width: 150px; *//* height: 150px; */transition: 500ms all;border: 1px solid #fff;}
+.fDebit input[type=radio]+label {border: 2px solid #ccc;display: grid;text-align: center;padding: 0px 0px 10px 0px;background: #fff;width: 30%;border-radius: 6px;float:  left;}
+.fDebit .grp {margin: 5px;}
+.fDebit input[type=radio]+label>img:active {display: table-cell;margin: 0 auto;border: 1px solid #fff;transition: 500ms all;}
+.fDebit img.flag {border: none;}
+/*Fim botoes debito*/
+
+
+@media(min-width:993px){
+.col-md-1{width:8.33%;}
+.col-md-2{width:16.66%;}
+.col-md-3{width:25%;}
+.col-md-4{width:33.33%;}
+.col-md-5{width:41.66%;}
+.col-md-6{width:50%;}
+.col-md-7{width:58.33%;}
+.col-md-8{width:66.66%;}
+.col-md-9{width:75%;}
+.col-md-10{width:83.33%;}
+.col-md-11{width:91.66%;}
+.col-md-12{width:100%;}
+
+.solicitarcartao .col-md- .solicitarcartao .col-md-1{width:8.33%;}
+.solicitarcartao .col-md-2{width:16.66%;}
+.solicitarcartao .col-md-3{width:25%;}
+.solicitarcartao .col-md-4{width:33.33%;}
+.solicitarcartao .col-md-5{width:41.66%;}
+.solicitarcartao .col-md-6{width:50%;}
+.solicitarcartao .col-md-7{width:58.33%;}
+.solicitarcartao .col-md-8{width:66.66%;}
+.solicitarcartao .col-md-9{width:75%;}
+.solicitarcartao .col-md-10{width:83.33%;}
+.solicitarcartao .col-md-11{width:91.66%;}
+.solicitarcartao .col-md-12{width:100%;}
+.solicitarcartao label>input[type="radio"]:checked+img{zoom:120%;}
+.solicitarcartao .cartoes{position:relative;text-align:center;width:100%;}
+.solicitarcartao .progress{text-align:center;margin-left:25%;height:117px;}
+.solicitarcartao .md-hidden{display:none;}
+.solicitarcartao .barra{width:20%;}
+.solicitarcartao .barraConfirm{background-color:#005c64;width:20%;height:10px;margin-top:15px;}
+}
+
+@media(max-width:992px) {
+    .solicitarcartao .col-sm-1 {
+        width: 8.33%;
+    }
+
+    .solicitarcartao .col-sm-2 {
+        width: 16.66%;
+    }
+
+    .solicitarcartao .col-sm-3 {
+        width: 25%;
+    }
+
+    .solicitarcartao .col-sm-4 {
+        width: 33.33%;
+    }
+
+    .solicitarcartao .col-sm-5 {
+        width: 41.66%;
+    }
+
+    .solicitarcartao .col-sm-6 {
+        width: 50%;
+    }
+
+    .solicitarcartao .col-sm-7 {
+        width: 58.33%;
+    }
+
+    .solicitarcartao .col-sm-8 {
+        width: 66.66%;
+    }
+
+    .solicitarcartao .col-sm-9 {
+        width: 75%;
+    }
+
+    .solicitarcartao .col-sm-10 {
+        width: 83.33%;
+    }
+
+    .solicitarcartao .col-sm-11 {
+        width: 91.66%;
+    }
+
+    .solicitarcartao .col-sm-12 {
+        width: 100%;
+    }
+
+    .solicitarcartao .sm-hidden {
+        display: none;
+    }
+
+    .solicitarcartao .cardEscolhido {
+        margin-bottom: 35px;
+        border-radius: 5px;
+        background: #f4f4f4;
+        border: 1px solid #ccc;
+    }
+
+    .solicitarcartao .CartoesBoxEscolhido {
+        height: 170px;
+    }
+
+    .solicitarcartao .cardEscolhido img {
+        width: 100%;
+        max-width: 150px;
+        margin-left: 15px;
+        float: left;
+    }
+
+    .solicitarcartao .cardEscolhido .labelB {
+        color: #000;
+        float: left;
+        margin: 8px 18px -18px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .solicitarcartao .cardEscolhido label {
+        color: #000;
+    }
+
+    .solicitarcartao .infoCards {
+        text-align: left;
+        margin-top: 5px;
+        color: #ccc;
+        margin-left: 50px;
+    }
+
+    .solicitarcartao .infoCards2 {
+        text-align: left;
+        margin-top: 5px;
+        color: #000;
+    }
+
+    .solicitarcartao .cartaoDados {
+        margin-top: 17px;
+        line-height: 20px;
+    }
+
+    .solicitarcartao .cards {
+        margin-left: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 20px;
+    }
+
+    .solicitarcartao .form label {
+        float: left;
+        width: 100%;
+        color: #666;
+        height: 40px;
+    }
+
+    .solicitarcartao .form .nameForms {
+        /*height: 40px;*/
+    }
+}
+    @media(max-width:425px) {
+        .solicitarcartao .col-xs-1 {
+            width: 8.33%;
+        }
+
+        .solicitarcartao .col-xs-2 {
+            width: 16.66%;
+        }
+
+        .solicitarcartao .col-xs-3 {
+            width: 25%;
+        }
+
+        .solicitarcartao .col-xs-4 {
+            width: 33.33%;
+        }
+
+        .solicitarcartao .col-xs-5 {
+            width: 41.66%;
+        }
+
+        .solicitarcartao .col-xs-6 {
+            width: 50%;
+        }
+
+        .solicitarcartao .col-xs-7 {
+            width: 58.33%;
+        }
+
+        .solicitarcartao .col-xs-8 {
+            width: 66.66%;
+        }
+
+        .solicitarcartao .col-xs-9 {
+            width: 75%;
+        }
+
+        .solicitarcartao .col-xs-10 {
+            width: 83.33%;
+        }
+
+        .solicitarcartao .col-xs-11 {
+            width: 91.66%;
+        }
+
+        .solicitarcartao .col-xs-12 {
+            width: 100%;
+        }
+
+        .solicitarcartao .headerContent {
+            height: auto;
+        }
+
+        .solicitarcartao .xs-hidden {
+            display: none !important;
+        }
+
+        .solicitarcartao .xs-show {
+            display: table;
+            width: 100%;
+        }
+
+        .solicitarcartao .cardEscolhido_Title_xs label {
+            color: #48bac6;
+            font-size: 19px;
+        }
+
+        .solicitarcartao .cards {
+            margin-right: 100px;
+            margin-left: 10px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .solicitarcartao .boxCartoes {
+            background-color: #fff;
+            float: left;
+            margin-top: 36px;
+            border: 0;
+            display: table-row-group;
+        }
+
+        .solicitarcartao .clubeExtra img {
+            float: left;
+            width: 100%;
+        }
+
+        .solicitarcartao .progress {
+            text-align: center;
+            margin-left: 15%;
+            height: 117px;
+        }
+
+        .solicitarcartao .formConfirm span p {
+            color: #005c64;
+            margin-top: 50px;
+            margin-left: -50px;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .solicitarcartao .vantDes {
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+            .solicitarcartao .vantDes ul li {
+                padding-bottom: 5px;
+                padding-top: 10px;
+                font-size: 18px;
+                line-height: 26px;
+            }
+
+        .solicitarcartao .clubeExtra {
+            float: left;
+            padding: 10px;
+            width: 100%;
+            font-size: 25px;
+        }
+
+        .solicitarcartao .barra {
+            width: 25%;
+        }
+
+        .solicitarcartao .barraConfirm {
+            background-color: #005c64;
+            width: 25%;
+            height: 10px;
+            margin-top: 15px;
+        }
+
+        .solicitarcartao .cardEscolhido {
+            text-align: left;
+        }
+
+        .solicitarcartao .CartoesBox {
+            text-align: left;
+        }
+
+        .solicitarcartao .cartoes {
+            position: relative;
+            display: inline-flex;
+            overflow: auto;
+            width: 590px;
+        }
+
+        .solicitarcartao label > input + img {
+            cursor: pointer;
+            border: 2px solid transparent;
+            height: 237px;
+        }
+
+        .solicitarcartao .CartoesBoxEscolhido {
+            height: 254px;
+        }
+
+        .solicitarcartao .cardConfirm {
+            text-align: center;
+            background: #462a5e;
+        }
+
+        .solicitarcartao .aprovedCard img {
+            width: 332px;
+            position: relative;
+            float: none;
+            margin: 26px;
+        }
+
+        .solicitarcartao .boxCartoes h2 {
+            color: #48bac6;
+            font-size: 33px;
+        }
+
+        .solicitarcartao .center {
+            text-align: center;
+        }
+
+        .solicitarcartao p {
+            line-height: 25px;
+        }
+
+        .solicitarcartao .btn-avancar #btnSubmit {
+            max-width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            height: 100px;
+            color: #fff;
+            font-size: 32px;
+            background-color: #eb1d29;
+            border-radius: 5px;
+            border: 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .solicitarcartao .btn-avancar #btnSubmit2 {
+            max-width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            padding-top: 30px;
+            height: 100px;
+            color: #fff;
+            font-size: 32px;
+            background-color: #eb1d29;
+            border-radius: 5px;
+            border: 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .solicitarcartao .txtPersnGren {
+            color: #48bac6;
+            font-size: 30px;
+        }
+
+        .solicitarcartao .aprovedCard p {
+            color: #eae5ed;
+            margin-bottom: 15px;
+            line-height: 27px;
+            font-size: 19px;
+        }
+    }
+
+    @media (max-width:993px) {
+        .contentWrapper.SolicitarCartao {
+            min-width: 100%;
+            max-width: 100%;
+        }
+
+        .solicitarcartao .vantDes {
+            padding: 27px 56px 30px 44px;
+            width: 100%;
+        }
+
+        .solicitarcartao .subTituloForm {
+            width: 80%;
+        }
+
+        .solicitarcartao .centerCards {
+            display: inline-table;
+        }
+    }
+
+  
+    
+/* Modal Fique Seguro */
+.popFiqueSeguro {
+    /*display: none;  Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 0px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-x: hidden;
+    overflow-y: auto; 
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.popFiqueSeguro .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 782px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;    
+    border-radius: 0;
+    height: 100%;
+
+}
+
+.popFiqueSeguro .modal-header {
+    background: #036cab;
+    color: white;
+    display: block;
+    border-radius: 0;
+    padding: 0;
+}
+
+.popFiqueSeguro h2 {
+    line-height: 1em;
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0;    
+    background: transparent;
+	 padding: 20px;
+}
+
+.popFiqueSeguro h3 {
+    color: #006bb0;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+
+.popFiqueSeguro .subtitle-text {
+    font-size: 14px;
+    color: #333333;
+    margin: 0;
+}
+
+/* Bt Close */
+.popFiqueSeguro .close {
+    background: url(../img/spriteGarantia.png) no-repeat 40px -180px transparent;
+    padding: 20px 30px !important;
+    width: 26px;
+    height: 26px;
+    float: right;
+    text-indent: -99999em;
+    display: block !important;      
+    margin: 0 !important;
+    opacity: inherit;
+}
+
+
+
+
+
+/* Box Orange */
+.popFiqueSeguro .plan-box-row {
+    display: table;
+    width: 100%;
+}
+
+.popFiqueSeguro .plan-box {
+    width: 28%;
+    height: auto;
+    float: left;
+    margin: 20px 17px 15px 0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0 20px 0 0;
+}
+
+.popFiqueSeguro .plan-box .plan-time {
+    background: #006bb0;
+    color: white;
+    float: left;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+
+/* Checkbox Mask */
+.popFiqueSeguro .input-custom {
+    position: relative;
+    padding-right: 10px;
+    top: -5px;
+    height: 45px;
+    float: left;
+}
+
+.popFiqueSeguro .input-custom [type="radio"]:checked, .input-custom [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+.popFiqueSeguro .input-custom [type="radio"]:checked + label, .input-custom [type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+
+.popFiqueSeguro .input-custom [type="radio"]:checked + label:before, .input-custom [type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -7px;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background: #fff;
+    border: 2px solid #005994;
+}
+
+
+.popFiqueSeguro .border [type="radio"]:checked + label::after, .popFiqueSeguro .border [type="radio"]:not(:checked) + label::after {
+    background: url(../img/icon-checked-ks.gif) no-repeat;
+}
+
+.popFiqueSeguro [type="radio"]:checked + label::after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.popFiqueSeguro [type="radio"]:checked + label::after, .popFiqueSeguro [type="radio"]:not(:checked) + label::after {
+    content: '';
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 2px;
+    left: 7px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.popFiqueSeguro .border {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 0 3px #006bb0;
+    box-shadow: inset 0 0 0 3px #006bb0;
+    -webkit-transition: all 150ms ease-out;
+    -moz-transition: all 150ms ease-out;
+    -ms-transition: all 150ms ease-out;
+    -o-transition: all 150ms ease-out;
+    transition: all 150ms ease-out;
+}
+
+
+
+/* T�tulo Box */
+.popFiqueSeguro .motive {
+    float: left;
+    width: 81%;
+    height: 100%;
+    font-weight: bold;
+}
+
+.popFiqueSeguro .format-01 {
+    float: left;
+    text-align: center;
+    width: 100%;
+    font-size: 19px;
+    margin-top: 4px;
+}
+
+.popFiqueSeguro .format-02 {
+    float: left;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    margin-top:  -2px;   
+}
+
+.popFiqueSeguro .plan-box.option-03 .motive > div:nth-child(1) {
+    width: 36%;
+    float: left;
+    margin-left: 8px;
+}
+
+.popFiqueSeguro .plan-box .plan-time .plus {
+    float: left;
+    color: #fff;
+    margin: 5px 0 0 10px;
+    font-size: 23px;
+    font-family: 'Futura-Bold';
+    font-weight: bold;
+}
+
+.popFiqueSeguro .plan-box.option-03 .motive > div:nth-child(3) {
+    width: 40%;
+    float: left;
+    margin-left: 0;
+}
+
+.popFiqueSeguro .plan-box.option-03 .motive:nth-child(2) .format-01, .plan-box.option-03 .motive:nth-child(4) .format-01 {
+    margin: 0 0 0 5px;
+    font-size: 17px;
+    line-height: 90%;
+}
+
+.popFiqueSeguro .plan-box.option-03 .format-02 {
+    font-size: 12px;
+    line-height: 90%;
+    margin: 4px 0 0 7px;
+}
+
+.popFiqueSeguro .details {
+    width: 100%;
+    float: left;
+    padding: 12px 10px;
+    -webkit-box-shadow: 3px 2px 4px 2px #d6d6d6;
+    box-shadow: 3px 2px 4px 2px #d6d6d6;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+
+/* Box Content */
+.popFiqueSeguro .details .price {
+    font-size: 12px;
+    text-align: center;
+}
+
+.popFiqueSeguro .details .price span {
+    font-size: 16px;
+    color: #333333;
+    line-height: 14px;
+}
+
+.popFiqueSeguro .details .price span strong {
+    color: #006bb0;
+    font-size: 18px;
+}
+
+.popFiqueSeguro .details .price span i {
+    font-size: 14px;
+    display: block;
+    margin-top: 2px;
+}
+
+
+/* Box Texto Servi�os */
+.popFiqueSeguro .bx-service {
+    margin-bottom: 12px;
+    display: table;
+}
+
+.txt-service {
+    width: 33%;
+}
+
+.popFiqueSeguro .bx-service .bx-img {
+    width: 40px;
+}
+
+.popFiqueSeguro .bx-img img {
+    width: 100%;
+}
+
+.popFiqueSeguro .bx-service .bx-txt {
+    width: 73%;
+    padding: 0 10px;
+    color: #333333;
+}
+
+.popFiqueSeguro .bx-service .bx-txt h4 {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 3px 0;
+    
+}
+
+.popFiqueSeguro .bx-service .bx-txt p {
+    font-size: 13px;
+    line-height: 16px;
+    margin: 0;
+}
+
+/* Box Termos */
+.popFiqueSeguro h5 {
+    color:#666;
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin: 10px 0;
+}
+
+.popFiqueSeguro li {
+    font-size: 12px;
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+.popFiqueSeguro .txt-accept {
+    color: #666;
+    font-size: 12px;
+}
+
+/* Bt Comprar */
+.popFiqueSeguro .modal-body .content-wrapper {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.popFiqueSeguro .modal-body .decline-button {
+    border: 1px solid #218e3a;
+    background: #28aa46;
+    text-indent: 0;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 5px;
+    margin: 13px 3%;
+    display: block;
+    width: 17%;
+    float: right;
+    text-decoration: none;
+}
+
+.popFiqueSeguro .modal-body .decline-button:hover {text-decoration: none;}
+
+/* Propriedade Apoio */
+.popFiqueSeguro .fl {float: left !important;}
+.popFiqueSeguro hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 0 14px 0;
+}
+
+/* The Close Button */
+.popFiqueSeguro .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.popFiqueSeguro .close:hover,
+.popFiqueSeguro .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popFiqueSeguro .modal-body {padding: 20px 20px 0 20px; height:100%; background: white;}
+
+
+
+.popFiqueSeguro .modal-body .decline-button {
+    border: 1px solid #218e3a;
+    background: #28aa46;
+    text-indent: 0;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 30px;
+    margin: 13px 3%;
+    display: block;
+    width: 150px;
+    float: right;
+    text-decoration: none;
+}
+
+.popFiqueSeguro .txt-contratar {
+    font-size: 11px;
+    float: left;
+    margin-top: 35px;
+    color: #666;
+}
+
+.popFiqueSeguro .bx-contratar {
+    float: right;
+}
+
+
+a[data-id="linkDefaultFiqueSeguro"]
+{
+    background: url(../img/ico-fique-seguro-36x36.png) no-repeat !important;
+    background-size: 36px !important;
+}
+
+a[data-id="lnkAddFiqueSeguro"] 
+{
+    background: url(../img/ico-fique-seguro-36x36.png) no-repeat !important;
+    background-size: 36px !important;
+}
+
+
+.fiqueSeguro .lnkAlterar{
+	background:none !important;
+	
+}
+
+
+a[data-id="lnkAddInstalacaoArCondicionado"] {   
+    padding:0 0 15px 42px !important;
+    background-size: 36px 36px !important;
+    background: url(../img/Instalacoes-CB-36x36.png) no-repeat !important;
+    
+}
+
+a[data-id="lnkAddMicrosoftXboxLive"] {
+	padding: 0 0 15px 42px !important;
+	background-size: 36px 36px !important;
+	background: url(https://carrinho.casasbahia.com.br/Control/ArquivoExibir.aspx?IdArquivo=810137553) no-repeat !important;
+}
+
+a[data-id="lnkAddMontagemMoveis"] {
+	padding: 0 0 15px 42px !important;
+	background-size: 36px 36px !important;
+	background: url(../img/montagem-de-moveisCB-36x36.png) no-repeat !important;
+}
+
+
+/*Surpreendido*/
+
+.bannerClienteSurpreendido {width: 100%;float: left;padding: 15px;border: 1px solid #c5c5c5;border-top: 4px solid #fada23;margin-bottom: 10px;box-sizing: border-box;background-color: white;}
+.textoBannerSurpreendido {padding: 10px;width: 70%;color: #414340;font-size: 16px;display: table-cell;vertical-align: middle;}
+.bannerNomeCliente {font-weight: bold;}
+.bannerValorTotal {font-weight: bold;color: brown;}
+.btnBannerSurpreendido {width: 15%;vertical-align: middle;display: table-cell;}
+.btnBannerSurpreendido a {color: #fff;background-color: #d13026;border-radius: 5px;display: table-cell;padding: 10px 25px;font-weight: bold;vertical-align: middle;}
+.bannerClienteSurpreendido .conteudoSurpreendido {width: 100%;display: table;}
+.tituloProdutoSurpreendidoEscolhido{font-weight: bold;}
+.innerContent{margin-left:5%;}
+.tituloCollapse {font-size: 20px; font-weight: bold;}
+.hrLineBorderBottom {border-bottom:1px solid #ccc; padding-bottom:10px; height:auto; width: 95%;}
+.boxCartoesSurpreendido {padding-left: 5%;padding-top: 2%;}
+.formLabelSurpreendido {padding-bottom: 20%;}
+.solicitarcartao .btn-avancar .submitSurpreendido{float:right;margin:15px 0 15px 15px;min-width:80px;max-width:200px;width:150px;height:40px;color:#fff;background-color:#eb1d29;border-radius:5px;border:0;font-weight:bold;cursor:pointer;border-bottom:3px solid #c30f19;}
+.solicitarcartao .obg.obgSmall {color:red; font-size: 12px; vertical-align:top;}
+.solicitarcartao .obg{color:red;}
+/*FIM SURPREENDIDO*/
+
+/*CardsSurpreendido*/
+
+.boxCards2 {width: 100%;display: table;text-align: center;margin: 0 auto;}
+.cardSurpreendido2 {border: none;margin: 0px 15px;text-align: center;display: inline-table;vertical-align: middle;box-sizing: border-box;}
+.cardSurpreendido2 img {height: 135px;width: 195px;}
+.cardSurpreendido2 span {font-size: 12px;}
+.cardSurpreendido2 .input-hidden {position: absolute;left: -9999px;border: none;}
+.cardSurpreendido2 input[type=radio]:checked + label > img {border: 1px solid #fff;/* height: 150px; *//* width: 202px; */top: 0px;left: 0px;padding: 0px;margin: 0;display: table-cell;}
+.cardSurpreendido2 input[type=radio]:checked + label {border: 1px solid #fff;/* width: 100%; */text-align: center;padding: 0px;margin: 0;position: relative;display: table-cell;/*box-shadow: 0 0 3px 3px;*/box-sizing: border-box;}
+.cardSurpreendido2 input[type=radio]:checked + label > img {border: 1px solid #fff;height: 150px;width: 202px;top: 0px;left: 0px;padding: 0px;z-index: 0;margin: 0;display: table-cell;position: relative;}
+.cardSurpreendido2 input[type=radio] + label > .iconCardOk {display: none;}
+.cardSurpreendido2 input[type=radio]:checked + label > .iconCardOk {display: initial;height: 60px;width: 60px;float: right !important;position: relative;z-index: 1;border: none;margin-left: -47px;margin-top: 106px;}
+.cardSurpreendido2 input[type=radio] + label {border: none;text-align: center;padding: 0;background: #fff;/* width: 100%; */margin: 0 auto;display: flex;border-radius: 6px;float: left;vertical-align: middle;}
+.cardSurpreendido2 .grp {margin: 5px;}
+.cardSurpreendido2 img.flag {border: none;}
+/*Fim cardsSurpreendido*/
+
+/*Texto CardBox*/
+.boxCardsTxt {width: 100%;box-sizing: border-box;}
+.listLike {display:inline-flex;}
+.listLike span {display: table-cell;}
+.listLike ul {list-style: disc;}
+.listLike ul li {display: list-item;margin-left: 30px;}.listLike ul li p {display: inline;}
+.infoCards3 {width: 100%;margin: 0px 0px 7px 0px;}
+.btnAvancarSurpreendido {margin: 15px !important;}
+/*Fim texto CardBox*/
+
+/*PagarSurpreendido*/
+.on .textoFormaPagamentoSurpreendido {
+    color: #fff;
+}
+
+.textoFormaPagamentoSurpreendido {
+    padding: 17px 0px;
+    font-weight: bold;
+    font-size: 14px;
+}    
+
+.boxSurpreendido {
+    float: left;
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+    border: 1px solid #b7cedf;
+}
+
+.bodyFormSurpreendido::before {
+    width: 95.5%;
+    float: left;
+    margin: 15px;
+    box-sizing: border-box;
+    content: '';
+    border-top: 1px solid #ccc;
+}
+
+.headerFormSurpreendido {
+    width: 100%;    
+    padding: 0px;
+    display:table;
+    cursor:pointer;
+}
+.headerFormSurpreendido h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #48bac6;
+    display:table-cell;
+}
+.headerFormSurpreendido span {
+    display: table-cell;
+    vertical-align: middle;
+}
+.headerFormSurpreendido a {
+    float: right;
+}
+.headerFormSurpreendido .arrowDown {
+    width: 1px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #48bac6;
+    cursor: pointer;
+}
+.headerFormSurpreendido .arrowUp {
+    width: 1px;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #48bac6;
+}
+
+
+.bodyFormSurpreendido {
+    margin: 0px -15px;
+}
+
+.bodyFormSurpreendido #obg{
+    color:red;
+}
+
+.bodyFormSurpreendido div {
+    float: left;
+    width: 33.33%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.bodyFormSurpreendido label {
+    font-size: 14px;
+    font-weight: initial;
+    color: #000;
+    opacity: 0.7;
+    height: 20px;
+}
+
+.bodyFormSurpreendido div input, select {
+    border-radius: 5px;
+    border: 1px solid #d5dbdb;
+    width: 100%;
+    font-size: 1.2em;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.validCamp {
+    background-image: url(/content/extra/img/icon_ok.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+
+
+.bodyFormSurpreendido div input:focus {
+    border: 1px solid #48bac6;
+    shape-outside: none;
+    outline-width: 0;
+}
+.bodyFormSurpreendido div input:active {
+    border: 1px solid #48bac6;
+    shape-outside: none;
+    outline-width: 0;
+}
+
+.bodyFormSurpreendido .erro{
+    display:none;
+}
+
+.bodyFormSurpreendido .erroActive{
+    position:absolute;
+    color:red;
+    display:block;
+    margin-top: 2px;
+}
+.bodyFormSurpreendido .camposObg{
+    width:100%;
+    display:inline-flex;
+    box-sizing:border-box;
+}
+.bodyFormSurpreendido .formErro {
+    border: 1px solid red;
+}
+/*Dados Pessoais*/
+.bodyFormSurpreendido .nome {}
+.bodyFormSurpreendido .email {}
+.bodyFormSurpreendido .cpf {} 
+.bodyFormSurpreendido .rg {}
+.bodyFormSurpreendido .estadoEmissor {}
+.bodyFormSurpreendido .dataNascimento {}
+.bodyFormSurpreendido .sexo {}
+.bodyFormSurpreendido .estadoNascimento {}
+.bodyFormSurpreendido .naturalidade {}
+.bodyFormSurpreendido .nomeMae {}
+.bodyFormSurpreendido .phone {display: inline-table;}
+.bodyFormSurpreendido .phone .ddd {width: 30%; float: left;padding:0px 20px;}
+.bodyFormSurpreendido .phone .telefone {width: 65%; margin-left: 2%;}
+.bodyFormSurpreendido .estadoCivil {}
+.bodyFormSurpreendido .camposObg {}
+/*Dados Residenciais*/
+.bodyFormSurpreendido .endereco{
+    background: none;
+    border: none;
+    margin: 0;
+}
+/*Dados Profissionais*/
+
+.bodyFormSurpreendido .check-element {
+    width: 100%;
+    float: left;
+    padding: 0;
+}
+
+.bodyFormSurpreendido .dadosComplementares {
+    width:100%;
+    float:left;
+
+}
+
+.bodyFormSurpreendido .dadosComplementares h3 {
+    font-size: 16px;
+    color: #48bac6;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.bodyFormSurpreendido .diaVencimento label {
+    box-sizing: border-box;
+    float: left;
+    height: 55px;
+}
+
+.bodyFormSurpreendido .sms label {
+    box-sizing: border-box;
+    float: left;
+    height: 55px;
+}
+
+
+.bodyFormSurpreendido .creditoEmergencial label {
+    box-sizing: border-box;
+    float: left;
+    height: 55px;
+}
+
+.bodyFormSurpreendido .contratoCheck {
+    width: 100%;
+    float: left;
+    display: inline;
+}
+
+.bodyFormSurpreendido .contratoCheck {
+    width: 100%;
+    float: left;
+    display: inline;
+}
+
+.bodyFormSurpreendido .contratoCheck .termos {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+    .bodyFormSurpreendido .contratoCheck .termos a {
+        text-decoration: underline;
+        color: #48bac6;
+        cursor: pointer;
+    }
+
+.bodyFormSurpreendido .contratoCheck input {
+    width: 14px;
+    display: table-cell;
+    vertical-align: middle;
+    float: left;
+    height: 14px;
+    margin: 0px 5px 0px 0px;
+}
+
+.bodyFormSurpreendido .btn {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bodyFormSurpreendido .btn .btnFinalizarSurpreendido{
+    float:right;
+    min-width: 80px;
+    max-width: 200px;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    margin: 0px;
+    color: #fff;
+    background-color: #eb1d29;
+    border-radius: 5px;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 3px solid #c30f19;
+}
+
+.surpreendidoModalContratoNone {
+    display: none;
+}
+
+.surpreendidoModalContrato {
+    height: 100%;
+    background: #00000095;
+    position: fixed;
+    top: 0;
+    display: block;
+    left: 0;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+}
+
+.surpreendidoModalContratoContent {
+    align-content: center;
+    width: 50%;
+    position: fixed;
+    margin: 100px;
+    left: 17%;
+    background: #fff;
+    z-index: 1;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+}
+
+
+.surpreendidoModalContratoContent .modalHeader {
+    display: table;
+    background: #ffcc00;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 15px 15px 50px;
+}
+
+.surpreendidoModalContratoContent .modalHeader h2 {
+    display: table-cell;
+    color: #a06b00;
+    font-weight: bold;
+}
+
+.surpreendidoModalContratoContent .modalHeader a {
+    display: table-cell;
+    vertical-align: middle;
+    color: #a06b00;
+    background: #fff;
+    border-radius: 50%;
+    text-align: center;
+    height: 5px;
+    width: 15px;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.surpreendidoModalContratoContent .modalBody {
+    padding: 25px 50px;
+    overflow-y: scroll;
+    height: 87%;
+    box-sizing: border-box;
+}
+
+.surpreendidoFinalizado {
+    float: left;
+    width: 100%;
+    border: 1px solid #b7cedf;
+    display: inline-flex;
+    border-radius: 4px;
+    padding: 18px;
+    background: #f8f8f8;
+    box-sizing: border-box;
+}
+
+.finalizadoCardAprovado {
+    width: 158px;
+    margin-right: 15px;
+}
+
+.finalizadoCardAprovado .card {
+    z-index: 2;
+    float: left;
+}
+
+.finalizadoCardAprovado .icon {
+    float: left;
+    margin-top: -29px;
+    margin-left: 98px;
+    z-index: 1;
+    margin-bottom: 0px;
+}
+
+
+.finalizadoTextAprovado h3 {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 9px;
+    padding: 0;
+}
+
+
+/*Parcelamento cards*/
+
+.surpreendidoParcelamentoCard {
+    width: 100%;
+}
+
+.surpreendidoParcelamentoCard input{
+    float: left;
+    width: 6%;
+}
+
+.surpreendidoParcelamentoCard select {
+    float: left;
+    margin-left: 10px;
+    width: 58%;
+}
+
+.surpreendidoParcelamentoCard small{
+    width: 100%;
+    float: left;
+    margin-left: 14%;
+}
+    
+
+/*SafetyPay*/
+
+.paymentOpt .checkoutSafetyPay > div {padding: 0px;}
+.checkoutSafetyPay {height: auto;border: none;width: 100%;box-sizing: border-box;}
+.imagemPagamentoSafetyPay {width: 80px;display: inline-block;zoom: 1;vertical-align: top;font-size: 12px;margin-right: 30px;}
+.textoPagamentoSafetyPay em {margin-bottom: 12px;display: block;font-size: 1.7em;font-weight: bold;color: #320d41;}
+.textoPagamentoSafetyPay .list, .notesList {list-style: disc;color: #320d41;}
+.textoPagamentoSafetyPay li, .notesList li {margin-bottom: 20px;}
+.textoPagamentoSafetyPay {width: 80%;display: inline-block;zoom: 1;vertical-align: top;font-size: 12px;}
+.checkoutSafetyPay .conteudoSafetyPay {display: table;border-top: 1px solid #0c88ce;border-bottom: 1px solid #0c88ce;width: 100%;float: left;margin-bottom: 10px;box-sizing: border-box;padding: 40px 0px 40px 0px;}
+.paymentOpt .pagtoHeader {border-bottom: 1px solid #0c88ce;padding-bottom: 10px;margin-bottom: 20px;}
+.pagtoHeader > strong {padding-bottom: 0px;margin-bottom: 5px;font-size: 1.5em;font-weight: bold;color: #e89005;display: inherit;border: none;}
+.checkoutSafetyPay .tips {padding: 40px 0px 40px 80px;}
+.paymentMethods .safetyPay a {padding-top: 16px;font-size: 14px;}
+.paymentMethods .safetyPay.on a {padding-top: 16px;color: #fff;font-size: 14px;}
+
+/*TelaFinalizada*/
+
+.wrapper.safetyPay {padding: 15px;height: auto;color: #000;}
+.wrapper.safetyPay .title {padding: 0px 0px 10px 0px;font-size: 18px;font-weight: bold;color: #095ba6;}
+.wrapper.safetyPay .wrapContent {padding: 10px;border: 1px solid #D6E5F2;border-radius: 5px;}
+.safetyFinalizada {box-sizing: border-box;border: 1px solid #D6E5F2;border-radius: 4px;padding: 15px;}
+.safetyFinalizada h4 {margin: 0px 0px 10px 0px;}
+.f1 {border: 1px solid #D6E5F2;border-radius: 4px;padding: 15px;margin: 15px 0px;display: table;box-sizing: border-box;width: 100%;}
+.subF1 {display: table-cell;vertical-align: middle;padding: 0;text-align: center;margin: 0;box-sizing: border-box;width:33%;}
+.subF1.boxNpac {border-right: 1px solid #ccc;padding: 0px 40px;}
+.subF1.boxNpac .nCode {font-weight: bold;font-size: 20px;margin: 10px 0px;}
+.subF1.boxNpac.nPac {border-bottom: 1px solid #ccc;padding: 0px 33px;}
+.subF1.boxNresumo {border-right: 1px solid #ccc;}
+.subF1.boxNresumo p {font-size: 14px;padding: 5px;}
+.subF1.boxLembrete {text-align: left;padding-left: 20px;vertical-align: baseline;}
+.subF1.boxLembrete p {margin-bottom: 10px;}
+.timerSafetyPay{display: inline-flex;text-align: left;margin: 10px 0px;}
+.timerSafetyPay img{height:30px;margin: 0px 10px 0px 0px;}
+span.timerSafetyPay p {font-size: 16px;padding-top: 5px;}
+p.nCode.nPac {padding: 0px 0px 10px 0px;border-bottom: 1px solid #ccc;}
+span.safetyFinalizaTermos {display: table-cell;box-sizing: border-box;margin: 10px;padding: 10px 0px 0px 0px;}
+.btMeusPedidosSafety {background: none;color: #757576;font-weight: bold;border: 1px solid #ccc;}
+.btMeusPedidosSafety:hover {background: none;color: #757576;font-weight: bold;border: 1px solid #ccc;}
+
+.wrapper.safetyPay .wrapContent {
+    padding: 10px;
+    border: 1px solid #D6E5F2;
+    border-radius: 5px;
+}
+
+
+/* ajustes para o novo fluxo de Pontuação */
+.acumuloPontos {
+    margin-bottom: 60px;
+}
+
+.pontos > .dados > p {
+    text-align: center !important;
+    font-size: 18px !important;
+    margin-left: 15px;
+}
+
+.pontos-corpo-container {
+    width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.pontuacao-container > #cadastro-pontos > div > .pontuacao {
+    top: -10px;
+}
+
+.pontuacao-container > #cadastro-pontos > div > button {
+    margin-top: 27px;
+    width: 210px;
+}
+
+.pontuacao-container > #cadastro-pontos > div > a {
+    margin: 5px 0 0 17px;
+}
+/* /ajustes para o novo fluxo de Pontuação */
+
+/* Temp */
+.finalizaCompra .printPage .bt.btPrint{ display: none; }
+
+
+.contrato-montagem {
+	font-family: Segoe UI;	
+	border-radius: 5px;
+	border: 1px solid #E5E5E5;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+	max-width: 878px;
+	margin: 0 auto;
+	padding: 20px;
+	box-sizing: border-box;
+	display: table;
+}
+.contrato-montagem .bx-contrato {
+	display: inline-block;
+	float: left;
+}
+
+.bx-15 {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 15%;
+	flex: 0 0 15%;
+	max-width: 15%;
+	padding-left: 20px;
+}
+
+.bx-25 {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
+	max-width: 25%;
+	padding-right: 20px;
+}
+.bx-70 {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 70%;
+	flex: 0 0 70%;
+	max-width: 70%;
+	padding-left: 20px;
+}
+
+.contrato-montagem .bx-contrato img {
+	max-width: 72px;
+}
+
+.contrato-montagem .bx-contrato h2 {
+	color: #0081D2;
+	font-weight: bold;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.contrato-montagem .bx-contrato p {
+	color: #656565;
+	font-size: 14px;
+}
+
+.contrato-montagem .bx-contrato a {
+	color: #0182D3;
+	font-size: 14px;
+	text-decoration: underline;
+    margin-top: 65px;
+    display: block;
+    width: 100%;
+    text-align: left;	
+}
+
+
+#modal-montagem .modal-header, #modal-montagem .modal-body, #modal-montagem .modal-footer {padding: 30px;}
+
+/* Modal */
+#modal-montagem {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Begin | Content */
+#modal-montagem .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    width: 800px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;    
+    border-radius: 0;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+/* End | Content */
+        
+/* Begin | Header */
+#modal-montagem .modal-header {
+background: white;
+padding: 30px 30px 0px 30px;
+}
+/* Begin | Title Header */
+.popMontagem h2 {
+    color: #00579F !important;
+    line-height: 1em;
+    font-size: 20px;
+    color: #fff;
+    font-weight: normal;
+    margin: 0;
+    text-align: left;
+}
+.popMontagem h2 hr {
+    background-color: #e4ebf1;
+    border: 0 none;
+    height: 1px;
+    margin-top: 20px;
+}
+/* End | Title Header */
+/* Begin | The Close Button */
+#modal-montagem .close-montagem {
+    background: transparent url("http://carrinho.casasbahia.com.br/Content/casasbahia/img/ico-close.png") no-repeat 0 0px;
+    float: right;
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+#modal-montagem .close-montagem:hover,
+#modal-montagem .close-montagem:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* End | The Close Button */
+/* Begin | Header */
+        
+/* Begin | Body */
+#modal-montagem .modal-body {
+background-color: white;
+color: #8A8A8A;
+padding: 15px 30px 30px 30px;
+}
+#modal-montagem .txt-up {
+    font-size: 13px;
+    padding: 0 50px 20px 0;
+}
+#modal-montagem .modal-body h3 {
+    font-size: 20px;
+    margin: 0;
+    border-top: 1px solid #e4ebf1;
+    padding: 16px 0;
+} 
+#modal-montagem .modal-body h4 {
+font-size: 14px;
+line-height: 18px;
+}
+#modal-montagem .modal-body .bxTxt {
+    height: 260px;
+    overflow-y:auto;
+}  
+#modal-montagem .modal-body .bxTxt p {
+    font-size: 14px;
+    padding-right: 15px;
+    text-align: left;
+}                 
+/* End | Body */
+
+/* Begin | Body */
+.modal-footer {padding: 10px 30px 30px 30px !important; display: flow-root;}
+.modal-footer .bt-download {
+    background-color: #0081D2;
+    border-radius: 4px;
+    color: white;
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 45px;
+    padding: 2px 40px;
+    float: right;
+    margin-right: 25px;
+}
+.modal-footer .bt-download img {
+    display: inline-block;
+    vertical-align: sub;
+    max-height: 24px;
+    padding-right: 20px;
+}  
+/* End | Body */
+
+
+/* reCaptcha */
+.grecaptcha-badge {
+    background-color: #fff;
+    z-index: 99;
+}
+
+
+
+/* Mensagens amigáveis */
+html {
+    scroll-behavior: smooth;
+}
+
+.cartaoCreditoMensagensAmigaveis {
+    padding: 25px 90px 25px 90px;
+    /*background-color: #fceee0;*/
+    background-color: #f4f4f4;
+    margin: 35px 0 20px 0;
+}
+
+.cartaoCreditoMensagensAmigaveis > h4 {
+    color: #C82727;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0 0 15px 0;
+}
+
+.cartaoCreditoMensagensAmigaveis > p {
+    color: #616161;
+    font-size: 14px;
+}
+
+.cartaoCreditoMensagensAmigaveis > ul {
+    text-align: center;
+    margin: 30px 0 0 0;
+}
+
+.cartaoCreditoMensagensAmigaveis > ul > li {
+    display: inline-block;
+    text-align: center;
+    width: 175px;
+    height: 130px;
+    overflow: hidden;
+}
+
+.cartaoCreditoMensagensAmigaveis > ul > li.on {
+    background: inherit;
+}
+
+.cartaoCreditoMensagensAmigaveis > ul > li > a > img,
+.cartaoCreditoMensagensAmigaveis > ul > li > a > span,
+.cartaoCreditoMensagensAmigaveis > ul > li.nossas_lojas > img,
+.cartaoCreditoMensagensAmigaveis > ul > li.nossas_lojas > span {
+    display: block;
+}
+
+.cartaoCreditoMensagensAmigaveis > ul > li > a:hover {
+    text-overflow: ellipsis;
+}
+
+.cartaoCreditoMensagensAmigaveis > ul > li > a span,
+.cartaoCreditoMensagensAmigaveis > ul > li.nossas_lojas > span {
+    font-size: 15px;
+    font-weight: bold;
+    color: #277EC8;
+    line-height: 16px;
+}
+
+.cartaoCreditoMensagensAmigaveis > ul > li > a > img,
+.cartaoCreditoMensagensAmigaveis > ul > li.nossas_lojas > img {
+    width: 84px;
+    height: 84px;
+    margin: 3px auto 8px auto;
+}
+
+.linkTodosPagamentos {
+    overflow: hidden;
+    text-align: center;
+    height: 75px;
+    background: #fff url("/Content/img/Pagamento/seta_baixo_MA.png") no-repeat center 30px;
+}
+
+.linkTodosPagamentos > a {
+    font-size: 14px;
+    width: 255px;
+    display: block;
+    margin: 10px auto 0 auto;
+    padding: 0 0 25px 0;
+}
+/* /Mensagens amigáveis */
+
+
+/* alteração em perfil */
+.mrgBottom30 {
+    margin-bottom: 30px;
+}
+
+.pdgTop25 {
+    padding-top: 25px;
+}
+
+.pdgTop15 {
+    padding-top: 15px;
+}
+
+.botaoAlterarSenha {
+    padding: 0;
+}
+
+.linkAlterarSenha, 
+.linkAlterarEmail {
+    margin-top: 10px;
+}
+
+.fOptins {
+    padding-top: 20px;
+    display: block;
+    clear: both;
+}
+
+.accountInfoNew,
+.customerServiceNew {
+    padding: 0 0;
+}
+
+.paymentCardsProfileNew {
+    padding: 0 0 !important;
+}
+
+/* popup ALTERE SEU E-MAIL */
+.novoPopup #block #blockMsg {
+    top: 40%;
+    left: 30%;
+}
+
+.changeEmailNovo h2 {
+    margin-bottom: 5px;
+}
+
+.changeEmailNovo p {
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.changeEmailNovo p.obrigatorios em {
+    font-style: italic;
+}
+
+.changeEmailNovo p.chaveSite {
+    margin-bottom: 15px;
+}
+
+.changeEmailNovo fieldset {
+    width: auto;
+    float: none;
+}
+
+.changeEmailNovo p.grp {
+    margin-bottom: 0;
+    padding-bottom: 35px;
+}
+
+.changeEmailNovo p.grp em,
+.changeEmailNovo p.grp input {
+    display: inline-block;
+}
+
+.changeEmailNovo p.grp em {
+    width: 32%;
+    text-align: right;
+}
+
+.changeEmailNovo p.grp input {
+    width: 50%;
+    margin-right: 65px;
+}
+
+.changeEmailNovo p.grp input#btnAlterarEmail {
+    width: auto;
+    margin-right: 0;
+}
+
+.changeEmailNovo p.bts {
+    margin: 0;
+    padding: 10px 0 0 0;
+}
+
+.changeEmailNovo p.bts span#emailMudou_erros {
+    margin-right: 10px;
+}
+
+.changeEmailNovo .field-validation-error {
+    top: 54px;
+    right: 65px;
+}
+
+.changeEmailNovo #emailMudouSucesso {
+    margin-top: 40px;
+}
+
+.changeEmailNovo #emailMudouSucesso p:first-child {
+    margin-bottom: 315px;
+}
+
+.changeEmailNovo #emailMudouSucesso p.grp input {
+    margin-right: 0;
+}
+/* /popup ALTERE SEU E-MAIL */
+/* /alteração em perfil */
+
+
+
+#blockCarne {z-index:9999;background-color:#fff;position:fixed;left:0;top:0;z-index:999;width:100%;height:100%;opacity:1;display:none;}
+#blockCarne #blockCarneMsg {position:absolute;top:38%;left:40%;z-index:999;opacity:1 !important;font:normal 3em/1 Tahoma, Arial, sans-serif;background:url(../img/load.gif) no-repeat 20px center #fff;color:#1382d1;display:block;padding:20px 20px 0 80px;width:auto;height:60px;border:none;}

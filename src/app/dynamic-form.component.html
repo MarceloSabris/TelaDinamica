@@ -1,0 +1,20 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+                                            
+    <div *ngFor="let DadosComplementares of DadosComplementaress"   >
+      <app-DadosComplementares [DadosComplementares]="DadosComplementares" [form]="form"   > </app-DadosComplementares>
+    </div>
+
+    <div style="vertical-align:middle;align-items: center" >
+      <button style="margin-left: 10%"   type="submit" [disabled]="!form.valid">Contratar</button>
+      <button style="margin-left: 5%"  type="submit" [disabled]="!form.valid">Cancelar</button>
+    </div>
+    
+   
+  </form>
+
+  <div *ngIf="payLoad">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+</div>

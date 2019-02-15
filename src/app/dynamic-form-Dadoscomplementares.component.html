@@ -1,0 +1,20 @@
+<div [formGroup]="form">
+
+ 
+  <div [ngSwitch]="DadosComplementares.controlType"  >
+      <label    [attr.for]="DadosComplementares.key"   [ngStyle]="{'position':'relative','left':DadosComplementares.positionLeftLabel, 'top':DadosComplementares.positionTopLabel }"    >
+        <span> 
+        {{DadosComplementares.label}}
+      </span>
+     </label>
+    <input *ngSwitchCase="'textbox'" [formControlName]="DadosComplementares.key"
+            [id]="DadosComplementares.key" [type]="DadosComplementares.type" [ngStyle]="{'position':'relative','left':DadosComplementares.leftControl, 'top':DadosComplementares.topControl, 'width':DadosComplementares.WidthControlText }"     >
+
+     <select [id]="DadosComplementares.key" *ngSwitchCase="'dropdown'" [formControlName]="DadosComplementares.key"  [ngStyle]="{'position':'relative','left':DadosComplementares.leftControl,'top':DadosComplementares.topControl,'width':DadosComplementares.WidthControlText }"    >
+      <option *ngFor="let opt of DadosComplementares.options" [value]="opt.key"    >{{opt.value}}</option>
+    </select>
+
+  </div> 
+
+  <div class="errorMessage" *ngIf="!isValid">{{DadosComplementares.label}} is required</div>
+</div>
